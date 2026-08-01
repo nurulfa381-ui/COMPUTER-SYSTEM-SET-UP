@@ -1,34 +1,207 @@
-let sequenceExpected = 1;
+let sequenceIndex = 0;
 
-document.querySelectorAll('#sequenceButtons button').forEach((button) => {
-  button.addEventListener('click', () => {
-    const selectedStep = Number(button.dataset.step || 0);
-    const resultBox = document.getElementById('sequenceResult');
-    if (selectedStep === sequenceExpected) {
-      button.classList.add('selected');
-      button.disabled = true;
-      sequenceExpected += 1;
-      if (sequenceExpected === 5) {
-        kp01State.sequenceCompleted = true;
-        resultBox.innerHTML = '<strong>✅ Betul!</strong><p>Input → Process → Output → Storage.</p>';
-        updateKPProgress();
-      } else {
-        resultBox.textContent = 'Betul. Pilih langkah seterusnya.';
+const correctSequence = [
+  "input",
+  "process",
+  "output",
+  "storage"
+];
+
+document
+  .querySelectorAll(
+    "#sequenceButtons button"
+  )
+  .forEach((button) => {
+    button.addEventListener(
+      "click",
+      () => {
+        const selectedValue =
+          button.dataset.value;
+
+        const expectedValue =
+          correctSequence[
+            sequenceIndex
+          ];
+
+        const resultBox =
+          document.getElementById(
+            "sequenceResult"
+          );
+
+        if (!resultBox) {
+          return;
+        }
+
+        if (
+          selectedValue ===
+          expectedValue
+        ) {
+          button.classList.add(
+            "practice-correct"
+          );
+
+          button.disabled =
+            true;
+
+          sequenceIndex += 1;
+
+          if (
+            sequenceIndex ===
+            correctSequence.length
+          ) {
+            kp01State.sequenceCompleted =
+              true;
+
+            resultBox.innerHTML = `
+              <div class="practice-feedback success">
+                <strong>
+                  ✅ Betul!
+                </strong>
+
+                <p>
+                  Urutan lengkap ialah
+                  Input → Process → Output → Storage.
+                </p>
+              </div>
+            `;
+
+            if (
+              typeof SoundEngine !==
+              "undefined"
+            ) {
+              SoundEngine.correct();
+            }
+
+            updateKP01Progress();
+          } else {
+            resultBox.innerHTML = `
+              <div class="practice-feedback info">
+                <strong>
+                  ✅ Betul
+                </strong>
+
+                <p>
+                  Pilih proses seterusnya.
+                </p>
+              </div>
+            `;
+          }
+
+          return;
+        }
+
+        resultBox.innerHTML = `
+          <div class="practice-feedback error">
+            <strong>
+              ❌ Belum tepat
+            </strong>
+
+            <p>
+              ${
+                sequenceIndex === 0
+                  ? "Mulakan dengan INPUT."
+                  : `Langkah seterusnya ialah ${expectedValue.toUpperCase()}.`
+              }
+            </p>
+          </div>
+        `;
+
+        if (
+          typeof SoundEngine !==
+          "undefined"
+        ) {
+          SoundEngine.wrong();
+        }
+
+        if (
+          typeof AnimationEngine !==
+          "undefined"
+        ) {
+          AnimationEngine.error(
+            resultBox
+          );
+        }
       }
-    } else {
-      resultBox.innerHTML = '<strong>❌ Belum tepat.</strong><p>Mulakan dengan input.</p>';
-    }
+    );
   });
-});
 
-function checkClassification() {
-  const correct = document.getElementById('classificationLaptop')?.value === 'portable' &&
-    document.getElementById('classificationDesktop')?.value === 'fixed' &&
-    document.getElementById('classificationTablet')?.value === 'portable';
-  const resultBox = document.getElementById('classificationResult');
-  kp01State.classificationCompleted = correct;
-  resultBox.innerHTML = correct
-    ? '<strong>✅ Semua jawapan betul.</strong>'
-    : '<strong>❌ Masih ada jawapan yang salah.</strong>';
-  updateKPProgress();
+function checkKP01Classification() {
+  const laptop =
+    document.getElementById(
+      "classificationLaptop"
+    )?.value;
+
+  const desktop =
+    document.getElementById(
+      "classificationDesktop"
+    )?.value;
+
+  const tablet =
+    document.getElementById(
+      "classificationTablet"
+    )?.value;
+
+  const resultBox =
+    document.getElementById(
+      "classificationResult"
+    );
+
+  if (!resultBox) {
+    return;
+  }
+
+  const correct =
+    laptop === "portable" &&
+    desktop === "fixed" &&
+    tablet === "portable";
+
+  kp01State.classificationCompleted =
+    correct;
+
+  if (correct) {
+    resultBox.innerHTML = `
+      <div class="practice-feedback success">
+        <strong>
+          ✅ Semua jawapan betul
+        </strong>
+
+        <p>
+          Laptop dan tablet ialah komputer mudah alih,
+          manakala desktop biasanya digunakan pada
+          satu lokasi tetap.
+        </p>
+      </div>
+    `;
+
+    if (
+      typeof SoundEngine !==
+      "undefined"
+    ) {
+      SoundEngine.correct();
+    }
+
+    updateKP01Progress();
+
+    return;
+  }
+
+  resultBox.innerHTML = `
+    <div class="practice-feedback error">
+      <strong>
+        ❌ Masih ada jawapan yang salah
+      </strong>
+
+      <p>
+        Semak semula ciri mobiliti laptop,
+        desktop dan tablet.
+      </p>
+    </div>
+  `;
+
+  if (
+    typeof SoundEngine !==
+    "undefined"
+  ) {
+    SoundEngine.wrong();
+  }
 }
