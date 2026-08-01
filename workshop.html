@@ -1,1 +1,382 @@
+<!DOCTYPE html>
+<html lang="ms">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Virtual Computer Workshop - C01</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="workshop-page">
+
+    <header class="workshop-header">
+
+      <div>
+
+        <p class="eyebrow">
+          REAL TECHNICIAN MODE
+        </p>
+
+        <h1>
+          VIRTUAL COMPUTER WORKSHOP
+        </h1>
+
+        <p
+          data-bm="Pilih stesen kerja untuk melihat fungsi dan tugasan yang akan dilaksanakan."
+          data-en="Select a workstation to view its functions and assigned tasks."
+        >
+          Pilih stesen kerja untuk melihat fungsi dan tugasan yang akan dilaksanakan.
+        </p>
+
+      </div>
+
+      <div class="dashboard-actions">
+
+        <button
+          class="secondary-button"
+          onclick="toggleLanguage()"
+        >
+          🌐 BM / EN
+        </button>
+
+        <button
+          class="secondary-button"
+          onclick="window.location.href='dashboard.html'"
+        >
+          ← Dashboard
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <section class="workshop-status glass-panel">
+
+      <span>
+        WORKSHOP STATUS
+      </span>
+
+      <strong>
+        ● READY
+      </strong>
+
+    </section>
+
+
+    <section class="workstation-grid">
+
+      <button
+        class="workstation-card glass-panel"
+        onclick="openStation('job')"
+      >
+
+        <span>
+          📋
+        </span>
+
+        <h2>
+          Job Request
+        </h2>
+
+        <p
+          data-bm="Terima aduan, arahan dan keperluan pelanggan."
+          data-en="Receive customer complaints, instructions and requirements."
+        >
+          Terima aduan, arahan dan keperluan pelanggan.
+        </p>
+
+      </button>
+
+
+      <button
+        class="workstation-card glass-panel"
+        onclick="openStation('toolbox')"
+      >
+
+        <span>
+          🧰
+        </span>
+
+        <h2>
+          Toolbox
+        </h2>
+
+        <p
+          data-bm="Pilih peralatan keselamatan, pemasangan dan pengujian."
+          data-en="Choose safety, installation and testing tools."
+        >
+          Pilih peralatan keselamatan, pemasangan dan pengujian.
+        </p>
+
+      </button>
+
+
+      <button
+        class="workstation-card main-workbench glass-panel"
+        onclick="openStation('workbench')"
+      >
+
+        <span>
+          🖥️
+        </span>
+
+        <h2>
+          Computer Workbench
+        </h2>
+
+        <p
+          data-bm="Laksanakan pemasangan dan konfigurasi sistem komputer."
+          data-en="Perform computer system installation and configuration."
+        >
+          Laksanakan pemasangan dan konfigurasi sistem komputer.
+        </p>
+
+      </button>
+
+
+      <button
+        class="workstation-card glass-panel"
+        onclick="openStation('hardware')"
+      >
+
+        <span>
+          📦
+        </span>
+
+        <h2>
+          Hardware Shelf
+        </h2>
+
+        <p
+          data-bm="Pilih komponen berdasarkan spesifikasi dan keserasian."
+          data-en="Select components based on specifications and compatibility."
+        >
+          Pilih komponen berdasarkan spesifikasi dan keserasian.
+        </p>
+
+      </button>
+
+
+      <button
+        class="workstation-card glass-panel"
+        onclick="openStation('diagnostic')"
+      >
+
+        <span>
+          🔧
+        </span>
+
+        <h2>
+          Diagnostic Tools
+        </h2>
+
+        <p
+          data-bm="Jalankan pengujian dan kenal pasti kerosakan sistem."
+          data-en="Run tests and identify system faults."
+        >
+          Jalankan pengujian dan kenal pasti kerosakan sistem.
+        </p>
+
+      </button>
+
+
+      <button
+        class="workstation-card glass-panel"
+        onclick="openStation('report')"
+      >
+
+        <span>
+          📑
+        </span>
+
+        <h2>
+          Report Table
+        </h2>
+
+        <p
+          data-bm="Lengkapkan checklist, UAT, aset dan laporan akhir."
+          data-en="Complete checklists, UAT, asset and final reports."
+        >
+          Lengkapkan checklist, UAT, aset dan laporan akhir.
+        </p>
+
+      </button>
+
+    </section>
+
+
+    <section
+      id="stationPanel"
+      class="station-information glass-panel"
+    >
+
+      <div class="byte-avatar">
+        🤖
+      </div>
+
+      <div>
+
+        <strong>
+          BYTE AI
+        </strong>
+
+        <h2 id="stationTitle">
+          Pilih Stesen Kerja
+        </h2>
+
+        <p id="stationDescription">
+          Maklumat stesen akan dipaparkan di sini.
+        </p>
+
+        <ul id="stationTasks">
+        </ul>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="storage.js"></script>
+
+  <script src="language.js"></script>
+
+  <script>
+    const stationData = {
+      job: {
+        title: "Job Request",
+        description:
+          "Stesen ini digunakan untuk menerima arahan kerja dan memahami keperluan pelanggan.",
+
+        tasks: [
+          "Baca aduan pelanggan",
+          "Semak spesifikasi komputer",
+          "Kenal pasti hasil kerja yang diperlukan",
+          "Terima tugasan"
+        ]
+      },
+
+      toolbox: {
+        title: "Toolbox",
+        description:
+          "Stesen ini menyediakan peralatan pemasangan, keselamatan dan pengujian.",
+
+        tasks: [
+          "Pilih anti-static wrist strap",
+          "Pilih screwdriver yang sesuai",
+          "Pilih multimeter",
+          "Semak keadaan peralatan"
+        ]
+      },
+
+      workbench: {
+        title: "Computer Workbench",
+        description:
+          "Stesen utama untuk memasang, membuka dan mengkonfigurasi sistem komputer.",
+
+        tasks: [
+          "Pasang motherboard",
+          "Pasang CPU dan RAM",
+          "Pasang storage",
+          "Sambungkan kabel kuasa dan data"
+        ]
+      },
+
+      hardware: {
+        title: "Hardware Shelf",
+        description:
+          "Stesen penyimpanan komponen komputer yang perlu dipilih berdasarkan keserasian.",
+
+        tasks: [
+          "Semak jenis socket CPU",
+          "Semak jenis RAM",
+          "Semak saiz casing",
+          "Semak kapasiti power supply"
+        ]
+      },
+
+      diagnostic: {
+        title: "Diagnostic Tools",
+        description:
+          "Stesen untuk menjalankan pengujian dan mengenal pasti kerosakan.",
+
+        tasks: [
+          "Jalankan POST test",
+          "Jalankan RAM test",
+          "Jalankan storage test",
+          "Semak bunyi beep BIOS"
+        ]
+      },
+
+      report: {
+        title: "Report Table",
+        description:
+          "Stesen dokumentasi dan penyediaan laporan selepas tugasan selesai.",
+
+        tasks: [
+          "Isi checklist kerja",
+          "Lengkapkan UAT",
+          "Rekod nombor siri dan asset tag",
+          "Sediakan laporan akhir"
+        ]
+      }
+    };
+
+    function openStation(stationId) {
+      const station =
+        stationData[stationId];
+
+      if (!station) {
+        return;
+      }
+
+      document.getElementById(
+        "stationTitle"
+      ).textContent =
+        station.title;
+
+      document.getElementById(
+        "stationDescription"
+      ).textContent =
+        station.description;
+
+      document.getElementById(
+        "stationTasks"
+      ).innerHTML =
+        station.tasks
+          .map(
+            task => `<li>${task}</li>`
+          )
+          .join("");
+
+      document
+        .getElementById(
+          "stationPanel"
+        )
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+    }
+  </script>
+
+</body>
+
+</html>
