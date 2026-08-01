@@ -1,14 +1,129 @@
-function selectRecommendedComputer(choice) {
-  const correct = choice === 'desktop';
-  kp01State.technicianCompleted = correct;
-  document.getElementById('analysisScore').textContent = correct ? '100%' : '40%';
-  document.getElementById('accuracyScore').textContent = correct ? '100%' : '0%';
-  document.getElementById('professionalScore').textContent = correct ? '100%' : '30%';
-  document.getElementById('technicianFeedback').innerHTML = correct
-    ? '<strong>✅ Cadangan tepat.</strong><p>Desktop sesuai untuk lokasi tetap, monitor besar dan mudah dinaik taraf.</p>'
-    : '<strong>❌ Cadangan belum sesuai.</strong><p>Semak keperluan pelanggan.</p>';
-  if (correct && typeof C01Storage !== 'undefined') {
-    C01Storage.saveWorkPerformance({moduleId:'kp01',scores:{analysis:100,accuracy:100,professionalism:100}});
+function selectKP01Computer(choice) {
+  const correct =
+    choice === "desktop";
+
+  const analysisScore =
+    document.getElementById(
+      "analysisScore"
+    );
+
+  const accuracyScore =
+    document.getElementById(
+      "accuracyScore"
+    );
+
+  const professionalScore =
+    document.getElementById(
+      "professionalScore"
+    );
+
+  const feedback =
+    document.getElementById(
+      "technicianFeedback"
+    );
+
+  kp01State.technicianCompleted =
+    correct;
+
+  if (correct) {
+    analysisScore.textContent =
+      "100%";
+
+    accuracyScore.textContent =
+      "100%";
+
+    professionalScore.textContent =
+      "100%";
+
+    feedback.innerHTML = `
+      <div class="practice-feedback success">
+        <strong>
+          ✅ Cadangan tepat
+        </strong>
+
+        <p>
+          Desktop paling sesuai kerana digunakan
+          pada lokasi tetap, menyokong monitor besar
+          dan mudah dinaik taraf.
+        </p>
+      </div>
+    `;
+
+    if (
+      typeof ScoringEngine !==
+      "undefined"
+    ) {
+      ScoringEngine.saveProfessionalScore({
+        moduleId: "kp01",
+        safety: 100,
+        procedure: 100,
+        accuracy: 100,
+        quality: 100,
+        troubleshooting: 100,
+        documentation: 100
+      });
+    }
+
+    if (
+      typeof SoundEngine !==
+      "undefined"
+    ) {
+      SoundEngine.correct();
+    }
+
+    if (
+      typeof AnimationEngine !==
+      "undefined"
+    ) {
+      AnimationEngine.success(
+        feedback
+      );
+    }
+  } else {
+    analysisScore.textContent =
+      "40%";
+
+    accuracyScore.textContent =
+      "0%";
+
+    professionalScore.textContent =
+      "30%";
+
+    feedback.innerHTML = `
+      <div class="practice-feedback error">
+        <strong>
+          ❌ Cadangan belum sesuai
+        </strong>
+
+        <p>
+          Semak semula keperluan pelanggan:
+          penggunaan tetap, monitor besar dan
+          mudah dinaik taraf.
+        </p>
+      </div>
+    `;
+
+    if (
+      typeof SoundEngine !==
+      "undefined"
+    ) {
+      SoundEngine.wrong();
+    }
+
+    if (
+      typeof AnimationEngine !==
+      "undefined"
+    ) {
+      AnimationEngine.error(
+        feedback
+      );
+    }
   }
-  updateKPProgress();
+
+  if (
+    typeof updateKP01Progress ===
+    "function"
+  ) {
+    updateKP01Progress();
+  }
 }
