@@ -1,1 +1,7 @@
-
+const kp04State={boot:false,os:false,ui:false,tech:false};
+function showMode(m,b){document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(m+'Mode').classList.add('active');b.classList.add('active')}
+function showInfo(t,x){document.getElementById('infoPanel').innerHTML=`<h3>${t}</h3><p>${x}</p>`}
+function showOS(t,x){document.getElementById('osPanel').innerHTML=`<h3>${t}</h3><p>${x}</p>`}
+function progress(){let p=20+(kp04State.boot?20:0)+(kp04State.os?20:0)+(kp04State.ui?20:0)+(kp04State.tech?20:0);document.getElementById('bar').style.width=p+'%';const s=C01Storage.requireProfile();s.kpProgress=s.kpProgress||{};s.kpProgress[4]=p;C01Storage.saveProfile(s)}
+function completeKP04(){if(!kp04State.boot||!kp04State.os||!kp04State.ui||!kp04State.tech){alert('Lengkapkan semua aktiviti KP04 terlebih dahulu.');return}const p=C01Storage.requireProfile();p.kpProgress=p.kpProgress||{};p.kpProgress[4]=100;p.badges=p.badges||[];if(!p.badges.includes('os-explorer')){p.badges.push('os-explorer');p.xp=(p.xp||0)+50;p.coins=(p.coins||0)+10}C01Storage.saveProfile(p);location.href='../../kt/kt04/index.html'}
+document.addEventListener('DOMContentLoaded',()=>{C01Storage.requireProfile();progress()});
