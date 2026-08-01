@@ -2,7 +2,7 @@ const KT01_CONFIG = {
   missionId: 1,
   nextMissionId: 2,
   ktCode: "KT01",
-  collegeName: "NAMA KOLEJ ANDA",
+  collegeName: "KOLEJ KEMAHIRAN MENTARI",
   logoPath: "../../assets/images/logo-kolej.png",
   badge: "computer-basics",
   xpReward: 100,
