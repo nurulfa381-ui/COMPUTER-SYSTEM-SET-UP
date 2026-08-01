@@ -1,1 +1,294 @@
+<!DOCTYPE html>
+<html lang="ms">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard - COMPUTER SYSTEM SET-UP C01</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="dashboard-page">
+
+    <header class="dashboard-header">
+
+      <div>
+
+        <p class="eyebrow">
+          COMPUTER SYSTEM SET-UP C01
+        </p>
+
+        <h1 id="dashboardGreeting">
+          Selamat Datang
+        </h1>
+
+      </div>
+
+      <div class="dashboard-actions">
+
+        <button
+          class="secondary-button"
+          onclick="toggleLanguage(); renderDashboard();"
+        >
+          🌐 BM / EN
+        </button>
+
+        <button
+          class="secondary-button"
+          onclick="window.location.href='workshop.html'"
+        >
+          🧰 Workshop
+        </button>
+
+        <button
+          class="dark-button"
+          onclick="logoutStudent()"
+        >
+          Log Keluar
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <section class="profile-panel glass-panel">
+
+      <div class="profile-main">
+
+        <div
+          id="profileAvatar"
+          class="profile-avatar"
+        >
+          👨‍💻
+        </div>
+
+        <div>
+
+          <h2 id="profileName">
+            Pelatih
+          </h2>
+
+          <p id="profileId">
+            -
+          </p>
+
+          <span
+            id="profileRank"
+            class="rank-badge"
+          >
+            Trainee Technician
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="xp-section">
+
+        <div class="xp-header">
+
+          <span>
+            XP
+          </span>
+
+          <strong id="xpText">
+            50 / 500
+          </strong>
+
+        </div>
+
+        <div class="xp-progress">
+
+          <span id="xpProgressBar">
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="statistics-grid">
+
+      <article class="stat-card glass-panel">
+
+        <span>
+          ⭐
+        </span>
+
+        <div>
+
+          <small>
+            Level
+          </small>
+
+          <strong id="levelValue">
+            1
+          </strong>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card glass-panel">
+
+        <span>
+          🪙
+        </span>
+
+        <div>
+
+          <small>
+            Coins
+          </small>
+
+          <strong id="coinValue">
+            10
+          </strong>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card glass-panel">
+
+        <span>
+          🎯
+        </span>
+
+        <div>
+
+          <small>
+            Professional Score
+          </small>
+
+          <strong id="professionalValue">
+            0%
+          </strong>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card glass-panel">
+
+        <span>
+          🏆
+        </span>
+
+        <div>
+
+          <small>
+            Badges
+          </small>
+
+          <strong id="badgeValue">
+            1
+          </strong>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <section class="byte-dashboard glass-panel">
+
+      <div class="byte-avatar">
+        🤖
+      </div>
+
+      <div>
+
+        <strong>
+          BYTE AI
+        </strong>
+
+        <p
+          id="dashboardByteMessage"
+          data-bm="Selamat datang Technician. Tekan Mission 01 untuk memulakan pembelajaran."
+          data-en="Welcome Technician. Select Mission 01 to begin learning."
+        >
+          Selamat datang Technician. Tekan Mission 01 untuk memulakan pembelajaran.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="mission-section glass-panel">
+
+      <div class="mission-section-header">
+
+        <div>
+
+          <p class="eyebrow">
+            LEARNING PATH
+          </p>
+
+          <h2
+            data-bm="Misi Pembelajaran"
+            data-en="Learning Missions"
+          >
+            Misi Pembelajaran
+          </h2>
+
+        </div>
+
+        <div class="overall-progress">
+
+          <span
+            data-bm="Kemajuan"
+            data-en="Progress"
+          >
+            Kemajuan
+          </span>
+
+          <strong id="overallProgress">
+            0%
+          </strong>
+
+        </div>
+
+      </div>
+
+      <div
+        id="missionList"
+        class="mission-list"
+      >
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="storage.js"></script>
+
+  <script src="language.js"></script>
+
+  <script src="missions.js"></script>
+
+  <script src="dashboard.js"></script>
+
+</body>
+
+</html>
