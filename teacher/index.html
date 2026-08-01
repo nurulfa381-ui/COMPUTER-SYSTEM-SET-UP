@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mod Guru - SERVER HERO C01</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="teacher.css?v=1">
+</head>
+
+<body>
+  <main class="teacher-page">
+
+    <header class="teacher-header">
+      <div class="brand-block">
+        <img
+          src="../assets/images/logo-kolej.png"
+          alt="Logo kolej"
+          class="college-logo"
+          onerror="this.style.display='none';document.getElementById('logoFallback').style.display='grid';"
+        >
+
+        <div id="logoFallback" class="logo-fallback">
+          LOGO<br>KOLEJ
+        </div>
+
+        <div>
+          <p class="eyebrow">SERVER HERO C01 PREMIUM</p>
+          <h1>MOD GURU / PEGAWAI PENILAI</h1>
+          <p id="collegeNameDisplay">NAMA KOLEJ ANDA</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="secondary-button" onclick="location.href='../dashboard.html'">
+          ← Dashboard
+        </button>
+
+        <button class="secondary-button" onclick="refreshTeacherDashboard()">
+          ↻ Muat Semula
+        </button>
+      </div>
+    </header>
+
+    <section class="teacher-panel login-panel" id="teacherLoginPanel">
+      <h2>Akses Pegawai Penilai</h2>
+
+      <div class="form-grid two-column">
+        <label>
+          Nama Pegawai Penilai
+          <input
+            id="teacherNameInput"
+            type="text"
+            placeholder="Masukkan nama Pegawai Penilai"
+          >
+        </label>
+
+        <label>
+          Kata Laluan Mod Guru
+          <input
+            id="teacherPasswordInput"
+            type="password"
+            placeholder="Masukkan kata laluan"
+          >
+        </label>
+      </div>
+
+      <p id="teacherLoginMessage" class="message"></p>
+
+      <button class="primary-button full-button" onclick="loginTeacher()">
+        MASUK MOD GURU
+      </button>
+    </section>
+
+    <section id="teacherDashboard" class="dashboard-hidden">
+
+      <section class="teacher-panel officer-summary">
+        <div>
+          <span>Pegawai Penilai Aktif</span>
+          <strong id="activeTeacherName">-</strong>
+        </div>
+
+        <button class="danger-button" onclick="logoutTeacher()">
+          Log Keluar Mod Guru
+        </button>
+      </section>
+
+      <section class="stats-grid">
+        <article>
+          <span>Menunggu Pengesahan</span>
+          <strong id="pendingCount">0</strong>
+        </article>
+
+        <article>
+          <span>Markah Rasmi</span>
+          <strong id="officialCount">0</strong>
+        </article>
+
+        <article>
+          <span>Belum Terampil</span>
+          <strong id="failedCount">0</strong>
+        </article>
+
+        <article>
+          <span>Jumlah Percubaan</span>
+          <strong id="attemptCount">0</strong>
+        </article>
+      </section>
+
+      <section class="teacher-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PENAPIS REKOD</p>
+            <h2>Carian dan Penapisan</h2>
+          </div>
+        </div>
+
+        <div class="filter-grid">
+          <label>
+            Status
+            <select id="statusFilter" onchange="renderTeacherRecords()">
+              <option value="all">Semua</option>
+              <option value="pending">Menunggu Pengesahan</option>
+              <option value="official">Terampil / Rasmi</option>
+              <option value="failed">Belum Terampil</option>
+            </select>
+          </label>
+
+          <label>
+            Modul
+            <select id="moduleFilter" onchange="renderTeacherRecords()">
+              <option value="all">Semua KT</option>
+              <option value="1">KT01</option>
+              <option value="2">KT02</option>
+              <option value="3">KT03</option>
+              <option value="4">KT04</option>
+              <option value="5">KT05</option>
+              <option value="6">KT06</option>
+              <option value="7">KT07</option>
+              <option value="8">KT08</option>
+              <option value="9">KT09</option>
+              <option value="10">KT10</option>
+              <option value="11">KT11</option>
+              <option value="12">KT12</option>
+              <option value="13">KT13</option>
+              <option value="14">KT14</option>
+              <option value="15">KT15</option>
+            </select>
+          </label>
+
+          <label>
+            Carian
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Nama, ID atau kod KT"
+              oninput="renderTeacherRecords()"
+            >
+          </label>
+        </div>
+      </section>
+
+      <section class="teacher-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">REKOD PENILAIAN</p>
+            <h2>Senarai Markah Pelatih</h2>
+          </div>
+
+          <button class="secondary-button" onclick="exportTeacherCSV()">
+            Eksport CSV
+          </button>
+        </div>
+
+        <div id="recordsContainer" class="records-grid"></div>
+
+        <div id="emptyState" class="empty-state">
+          Tiada rekod ditemui.
+        </div>
+      </section>
+
+      <section id="approvalModal" class="modal-overlay hidden">
+        <div class="approval-modal">
+          <button class="modal-close" onclick="closeApprovalModal()">×</button>
+
+          <div class="modal-heading">
+            <img
+              src="../assets/images/logo-kolej.png"
+              alt="Logo kolej"
+              class="modal-logo"
+              onerror="this.style.display='none';"
+            >
+
+            <div>
+              <p class="eyebrow">PENGESAHAN MARKAH RASMI</p>
+              <h2 id="approvalModalTitle">KT01</h2>
+            </div>
+          </div>
+
+          <div id="approvalSummary" class="approval-summary"></div>
+
+          <label>
+            Nama Pegawai Penilai
+            <input id="approvalTeacherName" type="text">
+          </label>
+
+          <label>
+            Ulasan
+            <textarea
+              id="approvalComment"
+              rows="4"
+              placeholder="Masukkan ulasan penilaian"
+            ></textarea>
+          </label>
+
+          <label class="confirm-row">
+            <input id="approvalCheckbox" type="checkbox">
+            <span>Saya mengesahkan markah ini sebagai markah rasmi.</span>
+          </label>
+
+          <p id="approvalMessage" class="message"></p>
+
+          <button class="primary-button full-button" onclick="confirmSelectedAssessment()">
+            SAHKAN MARKAH RASMI
+          </button>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <script src="../storage.js"></script>
+  <script src="teacher.js?v=1"></script>
+</body>
+</html>
