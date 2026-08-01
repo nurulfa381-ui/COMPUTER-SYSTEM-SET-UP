@@ -1,1 +1,945 @@
+:root {
+  --kp-bg-dark: #020914;
+  --kp-bg-mid: #061a2c;
+  --kp-panel: rgba(8, 29, 48, 0.96);
+  --kp-panel-light: #0d2c48;
 
+  --kp-text: #f7fbff;
+  --kp-muted: #b6c7d8;
+
+  --kp-blue: #20b8ff;
+  --kp-orange: #ff9f1c;
+  --kp-green: #2fd27a;
+  --kp-red: #ff5c69;
+
+  --kp-border: rgba(255, 255, 255, 0.11);
+  --kp-shadow: 0 22px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* =====================================================
+   RESET DAN WARNA UTAMA
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "Poppins", Arial, sans-serif;
+
+  color: var(--kp-text) !important;
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(32, 184, 255, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(255, 159, 28, 0.12),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      var(--kp-bg-dark),
+      var(--kp-bg-mid)
+    ) !important;
+
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.14;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 36px 36px;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+button {
+  color: var(--kp-text);
+}
+
+h1,
+h2,
+h3,
+strong {
+  font-family: "Montserrat", Arial, sans-serif;
+  color: var(--kp-text);
+}
+
+p,
+li,
+label,
+span {
+  color: inherit;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.kp01-page {
+  position: relative;
+  z-index: 1;
+
+  width: min(1450px, 100%);
+
+  margin: auto;
+  padding: 24px;
+}
+
+/* =====================================================
+   PANEL GLASS
+===================================================== */
+
+.kp01-header,
+.kp01-byte,
+.kp01-mode-navigation,
+.kp01-section,
+.kp01-footer {
+  margin-bottom: 16px;
+  padding: 22px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 22px;
+
+  color: var(--kp-text);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 47, 76, 0.97),
+      rgba(5, 21, 37, 0.97)
+    );
+
+  box-shadow: var(--kp-shadow);
+}
+
+/* Jika class glass-panel daripada CSS utama tidak dimuatkan */
+.glass-panel {
+  color: var(--kp-text) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 47, 76, 0.97),
+      rgba(5, 21, 37, 0.97)
+    ) !important;
+
+  border: 1px solid var(--kp-border) !important;
+
+  box-shadow: var(--kp-shadow);
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.kp01-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.kp01-header h1 {
+  margin: 0;
+
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  line-height: 1.05;
+
+  color: var(--kp-text) !important;
+}
+
+.kp01-header p {
+  max-width: 850px;
+
+  color: var(--kp-muted) !important;
+
+  line-height: 1.7;
+}
+
+.eyebrow {
+  margin: 0 0 7px;
+
+  color: var(--kp-blue) !important;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.kp01-header-actions {
+  display: flex;
+
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   BUTANG
+===================================================== */
+
+.primary-button,
+.secondary-button {
+  border: 0;
+  border-radius: 13px;
+
+  padding: 12px 17px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button {
+  color: #07111a !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffc05e,
+      var(--kp-orange)
+    ) !important;
+
+  box-shadow:
+    0 10px 28px
+    rgba(255, 159, 28, 0.24);
+}
+
+.secondary-button {
+  color: white !important;
+
+  background: #16415f !important;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.kp01-mode-button:hover,
+.kp01-computer-grid button:hover,
+.kp01-sequence-grid button:hover,
+.kp01-recommendation-grid button:hover {
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   BYTE AI
+===================================================== */
+
+.kp01-byte {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.kp01-byte .byte-avatar {
+  font-size: 2.5rem;
+}
+
+.kp01-byte strong {
+  color: var(--kp-blue) !important;
+}
+
+.kp01-byte p {
+  margin: 5px 0 0;
+
+  color: var(--kp-muted) !important;
+
+  line-height: 1.6;
+}
+
+.kp01-byte button {
+  margin-left: auto;
+}
+
+/* =====================================================
+   NAVIGATION MOD
+===================================================== */
+
+.kp01-mode-navigation {
+  display: flex;
+
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kp01-mode-button {
+  border: 0;
+  border-radius: 12px;
+
+  padding: 12px 16px;
+
+  color: white !important;
+
+  background: #153d5d;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+.kp01-mode-button.active {
+  color: #07111a !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffc05e,
+      var(--kp-orange)
+    );
+}
+
+.kp01-mode-content {
+  display: none;
+}
+
+.kp01-mode-content.active {
+  display: block;
+}
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.kp01-section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 18px;
+}
+
+.kp01-section-title > span {
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 15px;
+
+  background:
+    rgba(32, 184, 255, 0.11);
+
+  font-size: 1.8rem;
+}
+
+.kp01-section-title h2 {
+  margin: 0;
+
+  color: var(--kp-text) !important;
+}
+
+/* =====================================================
+   OBJEKTIF
+===================================================== */
+
+.kp01-objective-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 13px;
+}
+
+.kp01-objective-grid > div {
+  padding: 18px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 16px;
+
+  color: var(--kp-text);
+
+  background: #071c2e;
+}
+
+.kp01-objective-grid strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--kp-orange) !important;
+
+  font-size: 1.45rem;
+}
+
+.kp01-objective-grid p {
+  margin: 0;
+
+  color: var(--kp-muted) !important;
+
+  line-height: 1.6;
+}
+
+/* =====================================================
+   NOTA PENTING
+===================================================== */
+
+.kp01-important-note {
+  padding: 18px;
+
+  border-left: 6px solid var(--kp-orange);
+  border-radius: 14px;
+
+  color: var(--kp-text);
+
+  background:
+    rgba(255, 159, 28, 0.09);
+}
+
+.kp01-important-note h3 {
+  margin-top: 0;
+
+  color: var(--kp-text) !important;
+}
+
+.kp01-important-note p {
+  margin-bottom: 0;
+
+  color: var(--kp-muted) !important;
+
+  line-height: 1.75;
+}
+
+/* =====================================================
+   INPUT PROCESS OUTPUT STORAGE
+===================================================== */
+
+.kp01-process-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.kp01-process-grid article {
+  min-height: 175px;
+
+  padding: 18px;
+
+  text-align: center;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 17px;
+
+  color: var(--kp-text);
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b2d49,
+      #061827
+    );
+}
+
+.kp01-process-grid article > span {
+  display: block;
+
+  font-size: 2.6rem;
+}
+
+.kp01-process-grid h3 {
+  margin: 10px 0 7px;
+
+  color: var(--kp-blue) !important;
+}
+
+.kp01-process-grid p {
+  margin: 0;
+
+  color: var(--kp-muted) !important;
+
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* =====================================================
+   BENEFIT DAN SYSTEM GRID
+===================================================== */
+
+.kp01-benefit-grid,
+.kp01-system-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 13px;
+}
+
+.kp01-benefit-grid > div,
+.kp01-system-grid > div {
+  padding: 18px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 16px;
+
+  color: var(--kp-text);
+
+  background: #071c2e;
+
+  font-size: 1.9rem;
+}
+
+.kp01-benefit-grid strong,
+.kp01-system-grid strong {
+  display: block;
+
+  margin: 9px 0 6px;
+
+  color: var(--kp-text) !important;
+
+  font-size: 1rem;
+}
+
+.kp01-benefit-grid p,
+.kp01-system-grid p {
+  margin: 0;
+
+  color: var(--kp-muted) !important;
+
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* =====================================================
+   JENIS KOMPUTER
+===================================================== */
+
+.kp01-computer-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.kp01-computer-grid button {
+  min-height: 135px;
+
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 16px;
+
+  color: white !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0d3150,
+      #071a2c
+    );
+
+  cursor: pointer;
+
+  font-size: 2.8rem;
+}
+
+.kp01-computer-grid strong {
+  color: white !important;
+
+  font-size: 0.95rem;
+}
+
+.kp01-information-panel {
+  margin-top: 14px;
+  padding: 17px;
+
+  border: 1px solid
+    rgba(32, 184, 255, 0.2);
+
+  border-radius: 14px;
+
+  color: var(--kp-muted) !important;
+
+  background:
+    rgba(32, 184, 255, 0.07);
+
+  line-height: 1.65;
+}
+
+/* =====================================================
+   POINT PENTING
+===================================================== */
+
+.kp01-key-section {
+  border-left:
+    6px solid
+    var(--kp-orange) !important;
+}
+
+.kp01-key-section li {
+  margin-bottom: 10px;
+
+  color: var(--kp-muted) !important;
+
+  line-height: 1.65;
+}
+
+/* =====================================================
+   PRACTICE
+===================================================== */
+
+.kp01-sequence-grid,
+.kp01-recommendation-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.kp01-sequence-grid button,
+.kp01-recommendation-grid button {
+  min-height: 100px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 15px;
+
+  color: white !important;
+
+  background: #0c304d;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+.kp01-classification-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 13px;
+
+  margin-bottom: 15px;
+}
+
+.kp01-classification-grid label {
+  padding: 16px;
+
+  border-radius: 15px;
+
+  color: white !important;
+
+  background: #071c2e;
+}
+
+.field {
+  width: 100%;
+
+  margin-top: 8px;
+  padding: 13px;
+
+  border: 1px solid var(--kp-border);
+  border-radius: 11px;
+
+  color: white !important;
+
+  background: #0b2a44 !important;
+}
+
+.field option {
+  color: white;
+  background: #0b2a44;
+}
+
+#sequenceResult,
+#classificationResult,
+#technicianFeedback {
+  min-height: 20px;
+
+  margin-top: 14px;
+  padding: 15px;
+
+  border-radius: 13px;
+
+  color: var(--kp-muted) !important;
+
+  background: #071c2e;
+}
+
+.practice-feedback {
+  color: var(--kp-text) !important;
+}
+
+.practice-feedback p {
+  color: var(--kp-muted) !important;
+}
+
+.practice-correct {
+  color: #052114 !important;
+
+  background:
+    var(--kp-green) !important;
+}
+
+/* =====================================================
+   REAL TECHNICIAN
+===================================================== */
+
+.kp01-job-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kp01-job-header > span {
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  color: var(--kp-orange) !important;
+
+  background:
+    rgba(255, 159, 28, 0.14);
+
+  font-weight: 700;
+}
+
+.kp01-customer-panel {
+  display: flex;
+
+  gap: 16px;
+
+  margin: 18px 0;
+  padding: 18px;
+
+  border-radius: 16px;
+
+  color: var(--kp-text);
+
+  background: #071c2e;
+}
+
+.kp01-customer-panel > div:first-child {
+  font-size: 3rem;
+}
+
+.kp01-customer-panel h3 {
+  color: var(--kp-text) !important;
+}
+
+.kp01-customer-panel p {
+  color: var(--kp-muted) !important;
+
+  line-height: 1.65;
+}
+
+.kp01-performance-grid {
+  display: grid;
+
+  gap: 10px;
+}
+
+.kp01-performance-grid > div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 15px;
+
+  border-radius: 13px;
+
+  color: var(--kp-text);
+
+  background: #071c2e;
+}
+
+.kp01-performance-grid span {
+  color: var(--kp-muted) !important;
+}
+
+.kp01-performance-grid strong {
+  color: var(--kp-green) !important;
+}
+
+/* =====================================================
+   FOOTER DAN PROGRESS
+===================================================== */
+
+.kp01-footer {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.kp01-progress {
+  height: 13px;
+
+  margin-top: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #04121f;
+}
+
+.kp01-progress span {
+  display: block;
+
+  width: 25%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--kp-orange),
+      var(--kp-green)
+    );
+
+  transition:
+    width 0.35s ease;
+}
+
+.simulation-success {
+  border-left:
+    6px solid
+    var(--kp-green) !important;
+
+  box-shadow:
+    0 0 30px
+    rgba(47, 210, 122, 0.22);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+  .kp01-objective-grid,
+  .kp01-benefit-grid,
+  .kp01-system-grid,
+  .kp01-computer-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .kp01-process-grid,
+  .kp01-sequence-grid,
+  .kp01-recommendation-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .kp01-page {
+    padding: 12px;
+  }
+
+  .kp01-objective-grid,
+  .kp01-benefit-grid,
+  .kp01-system-grid,
+  .kp01-process-grid,
+  .kp01-computer-grid,
+  .kp01-sequence-grid,
+  .kp01-recommendation-grid,
+  .kp01-classification-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kp01-byte,
+  .kp01-customer-panel {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .kp01-byte button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .kp01-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .kp01-footer .primary-button {
+    width: 100%;
+  }
+
+  .kp01-header-actions {
+    width: 100%;
+  }
+
+  .kp01-header-actions button {
+    flex: 1;
+  }
+}

@@ -1,49 +1,148 @@
-.practice-feedback {
-  padding: 15px;
+const PracticeEngine = {
+  sequence({
+    selector,
+    correctOrder,
+    resultTarget,
+    onComplete = null
+  }) {
+    const buttons =
+      document.querySelectorAll(selector);
 
-  border-radius: 13px;
+    const resultBox =
+      document.querySelector(resultTarget);
 
-  background: #071a2b;
+    let currentIndex = 0;
 
-  border: 1px solid var(--border);
-}
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedValue =
+          button.dataset.value;
 
-.practice-feedback p {
-  margin: 5px 0 0;
+        const expectedValue =
+          correctOrder[currentIndex];
 
-  color: var(--muted);
-}
+        if (selectedValue === expectedValue) {
+          button.disabled = true;
 
-.practice-feedback.success {
-  border-left:
-    6px solid
-    var(--green);
-}
+          button.classList.add(
+            "practice-correct"
+          );
 
-.practice-feedback.error {
-  border-left:
-    6px solid
-    var(--red);
-}
+          currentIndex += 1;
 
-.practice-feedback.warning {
-  border-left:
-    6px solid
-    var(--orange);
-}
+          if (
+            currentIndex ===
+            correctOrder.length
+          ) {
+            if (resultBox) {
+              resultBox.innerHTML = `
+                <div class="practice-feedback success">
+                  <strong>✅ Betul!</strong>
+                  <p>
+                    INPUT → PROCESS → OUTPUT → STORAGE
+                  </p>
+                </div>
+              `;
+            }
 
-.practice-feedback.info {
-  border-left:
-    6px solid
-    var(--blue);
-}
+            if (
+              typeof onComplete ===
+              "function"
+            ) {
+              onComplete();
+            }
 
-.practice-correct {
-  color: #052114 !important;
+            return;
+          }
 
-  background:
-    var(--green) !important;
+          if (resultBox) {
+            resultBox.innerHTML = `
+              <div class="practice-feedback info">
+                <strong>✅ Betul</strong>
+                <p>
+                  Pilih langkah seterusnya:
+                  ${correctOrder[
+                    currentIndex
+                  ].toUpperCase()}
+                </p>
+              </div>
+            `;
+          }
 
-  border-color:
-    var(--green) !important;
-}
+          return;
+        }
+
+        if (resultBox) {
+          resultBox.innerHTML = `
+            <div class="practice-feedback error">
+              <strong>❌ Belum tepat</strong>
+              <p>
+                Langkah sekarang ialah
+                ${expectedValue.toUpperCase()}.
+              </p>
+            </div>
+          `;
+        }
+      });
+    });
+  },
+
+  checkSelectAnswers({
+    answers,
+    resultTarget,
+    onComplete = null
+  }) {
+    const resultBox =
+      document.querySelector(resultTarget);
+
+    const allCorrect =
+      answers.every((item) => {
+        const element =
+          document.querySelector(
+            item.selector
+          );
+
+        return (
+          element &&
+          element.value ===
+            item.correctValue
+        );
+      });
+
+    if (allCorrect) {
+      if (resultBox) {
+        resultBox.innerHTML = `
+          <div class="practice-feedback success">
+            <strong>
+              ✅ Semua jawapan betul
+            </strong>
+          </div>
+        `;
+      }
+
+      if (
+        typeof onComplete ===
+        "function"
+      ) {
+        onComplete();
+      }
+
+      return true;
+    }
+
+    if (resultBox) {
+      resultBox.innerHTML = `
+        <div class="practice-feedback error">
+          <strong>
+            ❌ Masih ada jawapan salah
+          </strong>
+        </div>
+      `;
+    }
+
+    return false;
+  }
+};
+
+window.PracticeEngine =
+  PracticeEngine;
