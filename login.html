@@ -1,1 +1,381 @@
+<!DOCTYPE html>
+<html lang="ms">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login Pelatih - COMPUTER SYSTEM SET-UP C01</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="form-page">
+
+    <section class="form-card glass-panel">
+
+      <p class="eyebrow">
+        COMPUTER SYSTEM SET-UP C01
+      </p>
+
+      <h1
+        data-bm="LOGIN PELATIH"
+        data-en="STUDENT LOGIN"
+      >
+        LOGIN PELATIH
+      </h1>
+
+      <p
+        class="hero-description"
+        data-bm="Masukkan nama penuh dan ID anda sendiri sebelum memulakan pembelajaran."
+        data-en="Enter your own full name and ID before starting the learning activities."
+      >
+        Masukkan nama penuh dan ID anda sendiri sebelum memulakan pembelajaran.
+      </p>
+
+      <label
+        for="studentName"
+        data-bm="Nama Penuh Pelatih"
+        data-en="Student Full Name"
+      >
+        Nama Penuh Pelatih
+      </label>
+
+      <input
+        id="studentName"
+        class="field"
+        type="text"
+        maxlength="100"
+        autocomplete="name"
+        placeholder="Contoh: Nurul Farhana Binti Ahmad"
+        required
+      >
+
+      <label
+        for="studentId"
+        data-bm="ID / No. Kad Pengenalan"
+        data-en="ID / Identity Card Number"
+      >
+        ID / No. Kad Pengenalan
+      </label>
+
+      <input
+        id="studentId"
+        class="field"
+        type="text"
+        maxlength="30"
+        autocomplete="off"
+        placeholder="Masukkan ID anda sendiri"
+        required
+      >
+
+      <label
+        data-bm="Pilih Avatar"
+        data-en="Choose Avatar"
+      >
+        Pilih Avatar
+      </label>
+
+      <div class="avatar-grid">
+
+        <button
+          class="avatar-button active"
+          type="button"
+          data-avatar="👨‍💻"
+        >
+          👨‍💻
+        </button>
+
+        <button
+          class="avatar-button"
+          type="button"
+          data-avatar="👩‍💻"
+        >
+          👩‍💻
+        </button>
+
+        <button
+          class="avatar-button"
+          type="button"
+          data-avatar="🧑‍🔧"
+        >
+          🧑‍🔧
+        </button>
+
+        <button
+          class="avatar-button"
+          type="button"
+          data-avatar="👷"
+        >
+          👷
+        </button>
+
+        <button
+          class="avatar-button"
+          type="button"
+          data-avatar="🖥️"
+        >
+          🖥️
+        </button>
+
+        <button
+          class="avatar-button"
+          type="button"
+          data-avatar="🚀"
+        >
+          🚀
+        </button>
+
+      </div>
+
+      <button
+        class="primary-button full-width"
+        type="button"
+        onclick="saveStudent()"
+      >
+        <span
+          data-bm="MASUK DASHBOARD"
+          data-en="ENTER DASHBOARD"
+        >
+          MASUK DASHBOARD
+        </span>
+      </button>
+
+      <button
+        class="secondary-button full-width"
+        type="button"
+        onclick="toggleLanguage()"
+      >
+        🌐 BM / EN
+      </button>
+
+      <button
+        class="dark-button full-width"
+        type="button"
+        onclick="window.location.href='index.html'"
+      >
+        ←
+        <span
+          data-bm="KEMBALI"
+          data-en="BACK"
+        >
+          KEMBALI
+        </span>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <script src="storage.js"></script>
+
+  <script src="language.js"></script>
+
+  <script>
+    let selectedAvatar =
+      "👨‍💻";
+
+    document
+      .querySelectorAll(
+        ".avatar-button"
+      )
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            document
+              .querySelectorAll(
+                ".avatar-button"
+              )
+              .forEach((item) => {
+                item.classList.remove(
+                  "active"
+                );
+              });
+
+            button.classList.add(
+              "active"
+            );
+
+            selectedAvatar =
+              button.dataset.avatar;
+          }
+        );
+      });
+
+    function saveStudent() {
+      const fullName =
+        document
+          .getElementById(
+            "studentName"
+          )
+          .value
+          .trim()
+          .replace(/\s+/g, " ");
+
+      const studentId =
+        document
+          .getElementById(
+            "studentId"
+          )
+          .value
+          .trim()
+          .replace(/\s+/g, "");
+
+      const language =
+        currentLanguage();
+
+      const blockedNames = [
+        "pelajar",
+        "student",
+        "test",
+        "testing",
+        "admin",
+        "guru",
+        "teacher",
+        "user",
+        "nama"
+      ];
+
+      if (
+        !fullName ||
+        fullName
+          .split(" ")
+          .length < 2
+      ) {
+        alert(
+          language === "en"
+            ? "Please enter your full name."
+            : "Sila masukkan nama penuh anda."
+        );
+
+        return;
+      }
+
+      if (
+        blockedNames.includes(
+          fullName.toLowerCase()
+        )
+      ) {
+        alert(
+          language === "en"
+            ? "Please use your own full name."
+            : "Sila gunakan nama penuh anda sendiri."
+        );
+
+        return;
+      }
+
+      const validName =
+        /^[A-Za-zÀ-ÖØ-öø-ÿ'’\- ]+$/;
+
+      if (
+        !validName.test(
+          fullName
+        )
+      ) {
+        alert(
+          language === "en"
+            ? "The name contains unsupported characters."
+            : "Nama mengandungi aksara yang tidak dibenarkan."
+        );
+
+        return;
+      }
+
+      if (
+        !studentId ||
+        studentId.length < 4
+      ) {
+        alert(
+          language === "en"
+            ? "Please enter your own student ID."
+            : "Sila masukkan ID anda sendiri."
+        );
+
+        return;
+      }
+
+      const validId =
+        /^[A-Za-z0-9\-]+$/;
+
+      if (
+        !validId.test(
+          studentId
+        )
+      ) {
+        alert(
+          language === "en"
+            ? "The student ID contains invalid characters."
+            : "ID mengandungi aksara yang tidak dibenarkan."
+        );
+
+        return;
+      }
+
+      const existingProfile =
+        C01Storage.loadProfile();
+
+      let profile;
+
+      if (
+        existingProfile &&
+        existingProfile.id ===
+          studentId
+      ) {
+        profile =
+          existingProfile;
+      } else {
+        profile =
+          C01Storage.createProfile({
+            name: fullName,
+            id: studentId,
+            avatar:
+              selectedAvatar,
+            language
+          });
+      }
+
+      profile.name =
+        fullName;
+
+      profile.id =
+        studentId;
+
+      profile.avatar =
+        selectedAvatar;
+
+      profile.language =
+        language;
+
+      profile.loginVerified =
+        true;
+
+      profile.lastLogin =
+        new Date().toISOString();
+
+      C01Storage.saveProfile(
+        profile
+      );
+
+      window.location.href =
+        "dashboard.html";
+    }
+  </script>
+
+</body>
+
+</html>
