@@ -3,7 +3,7 @@ const TEACHER_CONFIG = {
   collegeName: "NAMA KOLEJ ANDA"
 };
 
-let activeTeacherName = "";
+let activeTeacherNameValue = "";
 let selectedMissionId = null;
 let selectedPendingRecord = null;
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedTeacher = sessionStorage.getItem("c01ActiveTeacher");
 
   if (savedTeacher) {
-    activeTeacherName = savedTeacher;
+    activeTeacherNameValue = savedTeacher;
     openTeacherDashboard();
   }
 });
@@ -49,7 +49,7 @@ function loginTeacher() {
     return;
   }
 
-  activeTeacherName = name;
+  activeTeacherNameValue = name;
   sessionStorage.setItem("c01ActiveTeacher", name);
   teacherLoginMessage.textContent = "";
   openTeacherDashboard();
@@ -65,7 +65,7 @@ function openTeacherDashboard() {
 
 function logoutTeacher() {
   sessionStorage.removeItem("c01ActiveTeacher");
-  activeTeacherName = "";
+  activeTeacherNameValue = "";
   teacherDashboard.style.display = "none";
   teacherLoginPanel.style.display = "block";
   teacherPasswordInput.value = "";
