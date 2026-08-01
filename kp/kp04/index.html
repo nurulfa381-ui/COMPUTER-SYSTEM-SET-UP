@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KP04 - Sistem Pengoperasian Komputer</title>
+<link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<main class="page">
+<header class="panel header"><div><p class="eyebrow">MISSION 04 • IT-020-3:2013-C01/KP(4/15)</p><h1>SISTEM PENGOPERASIAN KOMPUTER</h1><p>Fahami fungsi OS, jenis OS, proses boot, GUI dan CLI.</p></div><div><button class="secondary-button" onclick="location.href='../../dashboard.html'">← Dashboard</button> <button class="secondary-button" onclick="toggleLanguage()">🌐 BM / EN</button></div></header>
+<section class="panel byte"><span>🤖</span><div><strong>BYTE AI</strong><p id="byteMessage">Sistem pengoperasian mengurus perkakasan, aplikasi, fail dan pengguna.</p></div><button class="secondary-button" onclick="ByteAI.speak(document.getElementById('byteMessage').textContent)">🔊</button></section>
+<nav class="panel tabs"><button class="tab active" onclick="showMode('learn',this)">📘 Learn Mode</button><button class="tab" onclick="showMode('practice',this)">🧩 Practice Mode</button><button class="tab" onclick="showMode('technician',this)">🧰 Real Technician Mode</button></nav>
 
+<section id="learnMode" class="mode active">
+<article class="panel"><h2>Fungsi Sistem Pengoperasian</h2><div class="grid">
+<button onclick="showInfo('CPU','Mengurus masa pemproses dan proses yang sedang berjalan.')">🧠<b>CPU</b></button>
+<button onclick="showInfo('Memori','Mengurus RAM dan memori maya untuk aplikasi.')">💾<b>Memori</b></button>
+<button onclick="showInfo('Fail','Mengurus fail, folder, lokasi dan kebenaran.')">📂<b>Fail</b></button>
+<button onclick="showInfo('Peranti','Mengawal peranti melalui driver.')">🖨️<b>Peranti</b></button>
+<button onclick="showInfo('Keselamatan','Mengurus log masuk, akses dan kemas kini.')">🔐<b>Keselamatan</b></button>
+<button onclick="showInfo('Pengguna','Mengurus akaun, profil dan kumpulan.')">👤<b>Pengguna</b></button>
+</div><div id="infoPanel" class="info">Klik satu fungsi untuk melihat penerangan.</div></article>
+
+<article class="panel"><h2>Jenis Sistem Pengoperasian</h2><div class="grid">
+<button onclick="showOS('Windows','Komputer peribadi, pejabat dan permainan.')">🪟<b>Windows</b></button>
+<button onclick="showOS('Linux','Server, pembangunan dan sistem sumber terbuka.')">🐧<b>Linux</b></button>
+<button onclick="showOS('macOS','Komputer Apple dan kerja multimedia.')">🍎<b>macOS</b></button>
+<button onclick="showOS('Android','Telefon pintar dan tablet.')">🤖<b>Android</b></button>
+<button onclick="showOS('iOS','iPhone dalam ekosistem Apple.')">📱<b>iOS</b></button>
+</div><div id="osPanel" class="info">Klik satu OS untuk melihat kegunaannya.</div></article>
+
+<article class="panel"><h2>Proses Boot</h2><div class="boot"><span>Power ON</span>→<span>POST</span>→<span>BIOS/UEFI</span>→<span>Boot Loader</span>→<span>Kernel</span>→<span>Login</span>→<span>Desktop</span></div></article>
+<article class="panel"><h2>GUI dan CLI</h2><div class="cards"><div>🖱️<b>GUI</b><p>Ikon, tetingkap dan menu.</p></div><div>⌨️<b>CLI</b><p>Arahan teks melalui terminal.</p></div></div></article>
+</section>
+
+<section id="practiceMode" class="mode">
+<article class="panel"><h2>Aktiviti 1: Susun Proses Boot</h2><div id="seq" class="grid"><button data-v="loader">BOOT LOADER</button><button data-v="power">POWER ON</button><button data-v="desktop">DESKTOP</button><button data-v="post">POST</button><button data-v="kernel">KERNEL</button></div><div id="seqResult" class="info"></div></article>
+<article class="panel"><h2>Aktiviti 2: Padankan OS</h2><div class="forms">
+<label>Linux<select id="linux" class="field"><option value="">Pilih</option><option value="server">Server</option><option value="iphone">iPhone</option></select></label>
+<label>iOS<select id="ios" class="field"><option value="">Pilih</option><option value="iphone">iPhone</option><option value="server">Server</option></select></label>
+<label>macOS<select id="mac" class="field"><option value="">Pilih</option><option value="apple">Komputer Apple</option><option value="android">Telefon Android</option></select></label>
+</div><button class="primary-button" onclick="checkOS()">Semak Jawapan</button><div id="osResult" class="info"></div></article>
+<article class="panel"><h2>Aktiviti 3: GUI atau CLI</h2><div class="forms">
+<label>Ikon dan tetingkap<select id="gui" class="field"><option value="">Pilih</option><option value="gui">GUI</option><option value="cli">CLI</option></select></label>
+<label>Terminal arahan teks<select id="cli" class="field"><option value="">Pilih</option><option value="gui">GUI</option><option value="cli">CLI</option></select></label>
+<label>Menu Start<select id="start" class="field"><option value="">Pilih</option><option value="gui">GUI</option><option value="cli">CLI</option></select></label>
+</div><button class="primary-button" onclick="checkUI()">Semak Jawapan</button><div id="uiResult" class="info"></div></article>
+</section>
+
+<section id="technicianMode" class="mode">
+<article class="panel"><h2>Job Request #C01-004</h2><p>Komputer melepasi POST tetapi berhenti pada logo Windows.</p><div class="grid">
+<button onclick="diagnose('printer')">🖨️ Semak printer</button>
+<button onclick="diagnose('repair')">🛡️ Safe Mode / Startup Repair</button>
+<button onclick="diagnose('speaker')">🔊 Tukar speaker</button>
+<button onclick="diagnose('monitor')">🖥️ Tukar monitor</button>
+</div><div id="diagResult" class="info"></div></article>
+<article class="panel"><h2>Professional Score</h2><div class="scores"><div>Analisis <b id="analysis">0%</b></div><div>Prosedur <b id="procedure">0%</b></div><div>Ketepatan <b id="accuracy">0%</b></div></div></article>
+</section>
+
+<footer class="panel footer"><div><b>KP04 Progress</b><div class="progress"><span id="bar"></span></div></div><button class="primary-button" onclick="completeKP04()">SELESAI KP04 & TERUS KE KT04</button></footer>
+</main>
+<script src="../../storage.js"></script><script src="../../language.js"></script><script src="../../core/byte-ai.js"></script><script src="../../core/scoring-engine.js"></script><script src="../../core/sound-engine.js"></script>
+<script src="script.js?v=1"></script><script src="practice.js?v=1"></script><script src="simulation.js?v=1"></script>
+</body></html>
