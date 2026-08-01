@@ -1,1 +1,6 @@
-
+const kp05State={matching:false,selection:false,classification:false,tech:false};
+function showMode(m,b){document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(m+'Mode').classList.add('active');b.classList.add('active')}
+function showComponent(t,x){componentInfo.innerHTML=`<h3>${t}</h3><p>${x}</p>`}
+function updateProgress(){let p=20+(kp05State.matching?20:0)+(kp05State.selection?20:0)+(kp05State.classification?20:0)+(kp05State.tech?20:0);bar.style.width=p+'%';const s=C01Storage.requireProfile();s.kpProgress=s.kpProgress||{};s.kpProgress[5]=p;C01Storage.saveProfile(s)}
+function completeKP05(){if(!kp05State.matching||!kp05State.selection||!kp05State.classification||!kp05State.tech){alert('Lengkapkan semua aktiviti KP05 terlebih dahulu.');return}const p=C01Storage.requireProfile();p.kpProgress=p.kpProgress||{};p.kpProgress[5]=100;p.badges=p.badges||[];if(!p.badges.includes('hardware-function-expert')){p.badges.push('hardware-function-expert');p.xp=(p.xp||0)+50;p.coins=(p.coins||0)+10}C01Storage.saveProfile(p);location.href='../../kt/kt05/index.html'}
+document.addEventListener('DOMContentLoaded',()=>{C01Storage.requireProfile();updateProgress()});
