@@ -1,1 +1,603 @@
+<!DOCTYPE html>
+<html lang="ms">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mod Guru - COMPUTER SYSTEM SET-UP C01</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="teacher-page">
+
+    <section
+      id="teacherLoginPanel"
+      class="teacher-login glass-panel"
+    >
+
+      <p class="eyebrow">
+        COMPUTER SYSTEM SET-UP C01
+      </p>
+
+      <h1
+        data-bm="MOD GURU"
+        data-en="TEACHER MODE"
+      >
+        MOD GURU
+      </h1>
+
+      <p
+        data-bm="Masukkan PIN guru untuk membuka laporan dan markah pelatih."
+        data-en="Enter the teacher PIN to access student reports and scores."
+      >
+        Masukkan PIN guru untuk membuka laporan dan markah pelatih.
+      </p>
+
+      <label
+        for="teacherPin"
+        data-bm="PIN Guru"
+        data-en="Teacher PIN"
+      >
+        PIN Guru
+      </label>
+
+      <input
+        id="teacherPin"
+        class="field"
+        type="password"
+        maxlength="10"
+        placeholder="Masukkan PIN"
+      >
+
+      <button
+        class="primary-button full-width"
+        onclick="teacherLogin()"
+      >
+        MASUK MOD GURU
+      </button>
+
+      <button
+        class="secondary-button full-width"
+        onclick="window.location.href='index.html'"
+      >
+        ← KEMBALI
+      </button>
+
+    </section>
+
+
+    <section
+      id="teacherDashboard"
+      class="teacher-dashboard hidden"
+    >
+
+      <header class="teacher-header">
+
+        <div>
+
+          <p class="eyebrow">
+            TEACHER DASHBOARD
+          </p>
+
+          <h1>
+            LAPORAN PELATIH C01
+          </h1>
+
+        </div>
+
+        <div class="dashboard-actions">
+
+          <button
+            class="secondary-button"
+            onclick="exportStudentCSV()"
+          >
+            📊 Export CSV
+          </button>
+
+          <button
+            class="secondary-button"
+            onclick="backupStudentJSON()"
+          >
+            💾 Backup JSON
+          </button>
+
+          <button
+            class="dark-button"
+            onclick="closeTeacherMode()"
+          >
+            Log Keluar
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <section class="teacher-summary-grid">
+
+        <article class="teacher-stat glass-panel">
+
+          <span>
+            👤
+          </span>
+
+          <div>
+
+            <small>
+              Nama Pelatih
+            </small>
+
+            <strong id="teacherStudentName">
+              -
+            </strong>
+
+          </div>
+
+        </article>
+
+        <article class="teacher-stat glass-panel">
+
+          <span>
+            🪪
+          </span>
+
+          <div>
+
+            <small>
+              ID Pelatih
+            </small>
+
+            <strong id="teacherStudentId">
+              -
+            </strong>
+
+          </div>
+
+        </article>
+
+        <article class="teacher-stat glass-panel">
+
+          <span>
+            🎯
+          </span>
+
+          <div>
+
+            <small>
+              Professional Score
+            </small>
+
+            <strong id="teacherProfessionalScore">
+              0%
+            </strong>
+
+          </div>
+
+        </article>
+
+        <article class="teacher-stat glass-panel">
+
+          <span>
+            ✅
+          </span>
+
+          <div>
+
+            <small>
+              Misi Selesai
+            </small>
+
+            <strong id="teacherCompletedMission">
+              0 / 15
+            </strong>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <section class="teacher-report-panel glass-panel">
+
+        <div class="teacher-report-header">
+
+          <div>
+
+            <p class="eyebrow">
+              STUDENT PERFORMANCE
+            </p>
+
+            <h2>
+              Markah dan Kemajuan Pelatih
+            </h2>
+
+          </div>
+
+        </div>
+
+        <div class="teacher-table-wrapper">
+
+          <table class="teacher-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Misi
+                </th>
+
+                <th>
+                  Tajuk
+                </th>
+
+                <th>
+                  KP
+                </th>
+
+                <th>
+                  Markah KT
+                </th>
+
+                <th>
+                  Percubaan
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="teacherMissionTable">
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <script src="storage.js"></script>
+
+  <script src="language.js"></script>
+
+  <script src="missions.js"></script>
+
+  <script>
+    const TEACHER_PIN =
+      "2026";
+
+    function teacherLogin() {
+      const enteredPin =
+        document
+          .getElementById(
+            "teacherPin"
+          )
+          .value
+          .trim();
+
+      if (
+        enteredPin !==
+        TEACHER_PIN
+      ) {
+        alert(
+          "PIN guru tidak betul."
+        );
+
+        return;
+      }
+
+      document
+        .getElementById(
+          "teacherLoginPanel"
+        )
+        .classList.add(
+          "hidden"
+        );
+
+      document
+        .getElementById(
+          "teacherDashboard"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      renderTeacherDashboard();
+    }
+
+    function renderTeacherDashboard() {
+      const profile =
+        C01Storage.loadProfile();
+
+      if (!profile) {
+        document.getElementById(
+          "teacherMissionTable"
+        ).innerHTML = `
+          <tr>
+            <td colspan="6">
+              Tiada data pelatih disimpan pada peranti ini.
+            </td>
+          </tr>
+        `;
+
+        return;
+      }
+
+      document.getElementById(
+        "teacherStudentName"
+      ).textContent =
+        profile.name || "-";
+
+      document.getElementById(
+        "teacherStudentId"
+      ).textContent =
+        profile.id || "-";
+
+      document.getElementById(
+        "teacherProfessionalScore"
+      ).textContent =
+        `${
+          profile.professionalScore ||
+          0
+        }%`;
+
+      document.getElementById(
+        "teacherCompletedMission"
+      ).textContent =
+        `${
+          (
+            profile.completed ||
+            []
+          ).length
+        } / 15`;
+
+      document.getElementById(
+        "teacherMissionTable"
+      ).innerHTML =
+        C01_MISSIONS.map(
+          mission => {
+            const progress =
+              profile.kpProgress?.[
+                mission.id
+              ] || 0;
+
+            const score =
+              profile.scores?.[
+                mission.id
+              ];
+
+            const attempt =
+              profile.attempts?.[
+                mission.id
+              ] || 0;
+
+            const completed =
+              profile.completed?.includes(
+                mission.id
+              );
+
+            const status =
+              completed
+                ? "TERAMPIL"
+                : score !== undefined
+                  ? "BELUM TERAMPIL"
+                  : "BELUM DINILAI";
+
+            return `
+              <tr>
+
+                <td>
+                  ${String(
+                    mission.id
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </td>
+
+                <td>
+                  ${mission.bm}
+                </td>
+
+                <td>
+                  ${progress}%
+                </td>
+
+                <td>
+                  ${
+                    score !== undefined
+                      ? `${score}%`
+                      : "-"
+                  }
+                </td>
+
+                <td>
+                  ${attempt}
+                </td>
+
+                <td>
+                  <span class="teacher-status ${
+                    completed
+                      ? "competent"
+                      : score !== undefined
+                        ? "not-competent"
+                        : "not-assessed"
+                  }">
+                    ${status}
+                  </span>
+                </td>
+
+              </tr>
+            `;
+          }
+        ).join("");
+    }
+
+    function exportStudentCSV() {
+      const profile =
+        C01Storage.loadProfile();
+
+      if (!profile) {
+        alert(
+          "Tiada data pelatih."
+        );
+
+        return;
+      }
+
+      const rows = [
+        [
+          "Mission",
+          "Title",
+          "KP Progress",
+          "KT Score",
+          "Attempt",
+          "Status"
+        ]
+      ];
+
+      C01_MISSIONS.forEach(
+        mission => {
+          const score =
+            profile.scores?.[
+              mission.id
+            ];
+
+          rows.push([
+            mission.id,
+            mission.bm,
+            `${
+              profile.kpProgress?.[
+                mission.id
+              ] || 0
+            }%`,
+            score !== undefined
+              ? `${score}%`
+              : "",
+            profile.attempts?.[
+              mission.id
+            ] || 0,
+            profile.completed?.includes(
+              mission.id
+            )
+              ? "TERAMPIL"
+              : "BELUM TERAMPIL"
+          ]);
+        }
+      );
+
+      const csv =
+        rows
+          .map(row =>
+            row
+              .map(value =>
+                `"${String(
+                  value
+                ).replace(
+                  /"/g,
+                  '""'
+                )}"`
+              )
+              .join(",")
+          )
+          .join("\n");
+
+      downloadFile(
+        `${profile.id}-c01-report.csv`,
+        csv,
+        "text/csv"
+      );
+    }
+
+    function backupStudentJSON() {
+      const profile =
+        C01Storage.loadProfile();
+
+      if (!profile) {
+        alert(
+          "Tiada data pelatih."
+        );
+
+        return;
+      }
+
+      downloadFile(
+        `${profile.id}-c01-backup.json`,
+        JSON.stringify(
+          profile,
+          null,
+          2
+        ),
+        "application/json"
+      );
+    }
+
+    function downloadFile(
+      filename,
+      content,
+      type
+    ) {
+      const blob =
+        new Blob(
+          [content],
+          {
+            type
+          }
+        );
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+      const anchor =
+        document.createElement(
+          "a"
+        );
+
+      anchor.href =
+        url;
+
+      anchor.download =
+        filename;
+
+      anchor.click();
+
+      URL.revokeObjectURL(
+        url
+      );
+    }
+
+    function closeTeacherMode() {
+      window.location.href =
+        "index.html";
+    }
+  </script>
+
+</body>
+
+</html>
