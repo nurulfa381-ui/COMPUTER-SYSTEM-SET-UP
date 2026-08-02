@@ -40,6 +40,7 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - `index.html` dikemaskini kepada versi cache `sim-animasi-v5`.
 - KP05 dikemaskini untuk kandungan KP sahaja: nota lengkap fungsi komponen perkakasan, simulasi fungsi komponen, animasi aliran input-CPU-RAM-storage-output, peta fungsi komponen, senario pemilihan komponen, aktiviti pelajar dan mini game simptom kerosakan.
 - `index.html` dikemaskini kepada versi cache `kp05-v6`.
+- KP05 hard update v7: tajuk ditukar kepada "Fungsi dan Peranan Komponen Perkakasan Komputer" dan `index.html` kini memanggil `app-kp05-v7.js` serta `style-kp05-v7.css` untuk elak cache fail lama.
 
 ## Fail
 
