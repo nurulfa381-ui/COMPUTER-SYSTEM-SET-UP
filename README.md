@@ -43,6 +43,8 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - KP05 hard update v7: tajuk ditukar kepada "Fungsi dan Peranan Komponen Perkakasan Komputer" dan `index.html` kini memanggil `app-kp05-v7.js` serta `style-kp05-v7.css` untuk elak cache fail lama.
 - KP06 dikemaskini untuk kandungan KP sahaja: nota lengkap pemasangan motherboard, CPU, thermal paste, cooler dan RAM; simulasi urutan pemasangan; animasi pemasangan; peta prosedur/keserasian; pemeriksaan sebelum boot; aktiviti pelajar dan mini game kesilapan pemasangan.
 - KP06 hard update v8: `index.html` kini memanggil `app-kp06-v8.js` dan `style-kp06-v8.css`.
+- KP06 v9 layout fix: simulasi utama dikemaskini kepada workbench pemasangan yang lebih kemas dengan diagram motherboard, progress bar, safety tags dan feedback ringkas.
+- KP06 hard update v9: `index.html` kini memanggil `app-kp06-v9.js` dan `style-kp06-v9.css`.
 
 ## Fail
 
