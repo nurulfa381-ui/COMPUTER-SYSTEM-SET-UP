@@ -26,6 +26,7 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - KP02 Upgrade 2 menambah inventori lengkap tools/hardware/software/safety, tools diagnostik, senario kit kerja, decision matrix item dan aktiviti pelajar tambahan.
 - KP02 video/animasi dikemaskini dengan 5 frame auto, progress bar dan workbench animation yang lebih jelas.
 - KP03 dikemaskini untuk kandungan KP sahaja: nota lengkap perkakasan/peralatan komputer, simulasi motherboard, peta port/kabel, peta komponen, aktiviti pelajar dan mini game fungsi komponen.
+- KP03 simulasi dikemaskini dengan hotspot interaktif motherboard dan port/kabel supaya pelajar boleh klik komponen untuk melihat fungsi.
 - KP04 dikemaskini untuk kandungan KP sahaja: nota lengkap peralatan pemasangan perkakasan, video prosedur tools, simulasi ESD, peta tools, urutan kerja selamat, aktiviti pelajar dan mini game pemilihan tools.
 
 ## Fail

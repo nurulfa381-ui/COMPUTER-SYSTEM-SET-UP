@@ -1786,12 +1786,12 @@ function renderKp03Premium() {
         <h2>${labels.board}</h2>
         <div class="motherboard-sim">
           <div class="mb-shape">
-            <div class="mb-part cpu">CPU</div>
-            <div class="mb-part ram">RAM</div>
-            <div class="mb-part m2">M.2</div>
-            <div class="mb-part pcie">PCIe</div>
-            <div class="mb-part sata">SATA</div>
-            <div class="mb-part power">24-pin</div>
+            <button class="mb-part cpu" data-kp03-hotspot="CPU Socket" data-info="${bm ? "Tempat CPU dipasang. Pastikan socket CPU serasi dengan motherboard." : "CPU installation area. Make sure CPU socket is compatible with the motherboard."}">CPU</button>
+            <button class="mb-part ram" data-kp03-hotspot="RAM Slot" data-info="${bm ? "Tempat RAM dipasang. Semak jenis DDR, kapasiti dan slot yang sesuai." : "RAM installation slots. Check DDR type, capacity and suitable slots."}">RAM</button>
+            <button class="mb-part m2" data-kp03-hotspot="M.2 Slot" data-info="${bm ? "Slot untuk NVMe M.2 SSD. Memberi capaian storage yang lebih laju." : "Slot for NVMe M.2 SSD. Provides faster storage access."}">M.2</button>
+            <button class="mb-part pcie" data-kp03-hotspot="PCIe Slot" data-info="${bm ? "Slot untuk GPU atau expansion card seperti network/sound card." : "Slot for GPU or expansion cards such as network/sound card."}">PCIe</button>
+            <button class="mb-part sata" data-kp03-hotspot="SATA Port" data-info="${bm ? "Port data untuk HDD/SSD SATA. Perlu kabel SATA data dan SATA power." : "Data port for SATA HDD/SSD. Requires SATA data cable and SATA power."}">SATA</button>
+            <button class="mb-part power" data-kp03-hotspot="24-pin Power" data-info="${bm ? "Connector kuasa utama motherboard daripada PSU." : "Main motherboard power connector from PSU."}">24-pin</button>
             <div class="mb-trace t1"></div>
             <div class="mb-trace t2"></div>
             <div class="mb-trace t3"></div>
@@ -1800,18 +1800,24 @@ function renderKp03Premium() {
             ${boardLabels.map(([title, detail]) => `<div><strong>${title}</strong><span>${detail}</span></div>`).join("")}
           </div>
         </div>
+        <div id="kp03HotspotResult" class="hotspot-result">
+          ${bm ? "Klik mana-mana bahagian pada motherboard untuk melihat fungsi komponen." : "Click any motherboard area to view the component function."}
+        </div>
       </div>
 
       <div class="panel lesson-box">
         <h2>${labels.ports}</h2>
         <div class="port-map">
-          ${portRows.map(([port, cable, use]) => `
-            <div class="port-row">
+          ${portRows.map(([port, cable, use], index) => `
+            <button class="port-row" data-kp03-port="${port}" data-info="${cable} - ${use}" style="--delay:${index}">
               <strong>${port}</strong>
               <span>${cable}</span>
               <small>${use}</small>
-            </div>
+            </button>
           `).join("")}
+        </div>
+        <div id="kp03PortResult" class="hotspot-result">
+          ${bm ? "Klik port untuk lihat kabel dan fungsi." : "Click a port to view its cable and function."}
         </div>
       </div>
 
@@ -1848,6 +1854,24 @@ function renderKp03Premium() {
 }
 
 function bindKp03Game() {
+  document.querySelectorAll("[data-kp03-hotspot]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const result = document.getElementById("kp03HotspotResult");
+      document.querySelectorAll("[data-kp03-hotspot]").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      result.innerHTML = `<strong>${button.dataset.kp03Hotspot}</strong><span>${button.dataset.info}</span>`;
+    });
+  });
+
+  document.querySelectorAll("[data-kp03-port]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const result = document.getElementById("kp03PortResult");
+      document.querySelectorAll("[data-kp03-port]").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      result.innerHTML = `<strong>${button.dataset.kp03Port}</strong><span>${button.dataset.info}</span>`;
+    });
+  });
+
   document.querySelectorAll("[data-kp03-answer]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = document.querySelector(`[data-kp03-card="${button.dataset.card}"]`);

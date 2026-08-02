@@ -1206,6 +1206,15 @@ select:focus {
   font-weight: 900;
   text-align: center;
   animation: boardGlow 3.4s ease-in-out infinite;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mb-part:hover,
+.mb-part.active {
+  transform: translateY(-2px);
+  border-color: var(--warning);
+  box-shadow: 0 0 22px rgba(242, 153, 74, 0.38);
 }
 
 .mb-part.cpu {
@@ -1306,6 +1315,25 @@ select:focus {
   margin-top: 4px;
 }
 
+.hotspot-result {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  background: rgba(86, 204, 242, 0.12);
+  border: 1px solid rgba(86, 204, 242, 0.28);
+  border-radius: 8px;
+  padding: 14px;
+  color: #d7e3ff;
+}
+
+.hotspot-result strong {
+  color: var(--primary-2);
+}
+
+.hotspot-result span {
+  line-height: 1.5;
+}
+
 .port-map {
   display: grid;
   gap: 10px;
@@ -1314,6 +1342,11 @@ select:focus {
 .port-row {
   position: relative;
   padding-left: 46px;
+  width: 100%;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .port-row::before {
@@ -1326,6 +1359,13 @@ select:focus {
   background: var(--primary-2);
   border-radius: 5px;
   box-shadow: 0 0 0 5px rgba(86, 204, 242, 0.12);
+}
+
+.port-row:hover,
+.port-row.active {
+  transform: translateY(-1px);
+  border-color: rgba(242, 153, 74, 0.55);
+  background: rgba(86, 204, 242, 0.12);
 }
 
 .component-map p {
