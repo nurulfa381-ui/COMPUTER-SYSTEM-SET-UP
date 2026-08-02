@@ -1,37 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>KP02 - Fungsi Kerja Sistem Komputer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="style.css?v=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COMPUTER SYSTEM SET-UP C01</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="kp02-page">
-<header class="kp02-header glass-panel"><div><p class="eyebrow">MISSION 02 • IT-020-3:2013-C01/KP(2/15)</p><h1>FUNGSI KERJA SISTEM KOMPUTER</h1><p>Fahami empat fungsi kerja sistem komputer: pengurusan, multimedia, kejuruteraan dan jualan.</p></div><div class="actions"><button class="secondary-button" onclick="location.href='../../dashboard.html'">← Dashboard</button><button class="secondary-button" onclick="toggleLanguage()">🌐 BM / EN</button></div></header>
-<section class="byte glass-panel"><div class="byte-avatar">🤖</div><div><strong>BYTE AI</strong><p id="byteMessage">Dalam KP02, anda akan mengenal fungsi kerja komputer, komponen utama, unit input, unit output dan storan.</p></div><button class="secondary-button" onclick="speakByte()">🔊</button></section>
-<nav class="mode-nav glass-panel"><button class="mode-btn active" onclick="openMode('learn',this)">📘 Learn Mode</button><button class="mode-btn" onclick="openMode('practice',this)">🧩 Practice Mode</button><button class="mode-btn" onclick="openMode('technician',this)">🧰 Real Technician Mode</button></nav>
-<section id="learnMode" class="mode-content active">
-<article class="section glass-panel"><h2>1. Empat Fungsi Kerja Sistem Komputer</h2><div class="work-grid"><button onclick="showWork('management')">📊<strong>Pengurusan</strong></button><button onclick="showWork('multimedia')">🎬<strong>Multimedia</strong></button><button onclick="showWork('engineering')">🛠️<strong>Kejuruteraan</strong></button><button onclick="showWork('sales')">🛒<strong>Jualan</strong></button></div><div id="workInfo" class="info-panel">Klik fungsi kerja untuk melihat penerangan.</div></article>
-<article class="section glass-panel"><h2>2. Multimedia</h2><p>Multimedia menggabungkan teks, gambar, audio, animasi dan video untuk menyampaikan maklumat secara lebih menarik dan interaktif.</p><div class="five-grid"><div>📝<strong>Teks</strong><p>Kunci komunikasi idea.</p></div><div>🖼️<strong>Imej</strong><p>Menerangkan maklumat secara visual.</p></div><div>🔊<strong>Audio</strong><p>Suara, muzik dan kesan bunyi.</p></div><div>🎞️<strong>Animasi</strong><p>Pergerakan grafik.</p></div><div>📹<strong>Video</strong><p>Gabungan visual bergerak dan audio.</p></div></div></article>
-<article class="section glass-panel"><h2>3. Komponen Sistem Komputer</h2><div class="component-grid"><div>🧠<strong>CPU</strong><p>Mengawal aliran data dan melaksanakan pemprosesan.</p></div><div>⚡<strong>RAM</strong><p>Menyimpan sementara arahan dan data yang sedang digunakan.</p></div><div>💾<strong>Storan</strong><p>Menyimpan data, aplikasi dan sistem pengoperasian.</p></div><div>⌨️<strong>Input</strong><p>Memberi arahan dan memasukkan data.</p></div><div>🖥️<strong>Output</strong><p>Memindahkan hasil pemprosesan kepada bentuk yang difahami pengguna.</p></div></div></article>
-<article class="section glass-panel"><h2>4. Unit Input dan Output</h2><div class="io-grid"><div><h3>Unit Input</h3><ul><li>Papan kekunci</li><li>Tetikus</li><li>Pengimbas</li><li>Mikrofon</li></ul></div><div><h3>Unit Output</h3><ul><li>Monitor</li><li>Pencetak</li><li>Pembesar suara</li><li>Projektor</li></ul></div></div></article>
-</section>
-<section id="practiceMode" class="mode-content">
-<article class="section glass-panel"><h2>Aktiviti 1: Padankan Komponen dengan Fungsi</h2><div class="match-grid">
-<label>CPU<select id="p1" class="field"><option value="">Pilih</option><option value="control">Mengawal aliran data dan pemprosesan</option><option value="store">Menyimpan data kekal</option></select></label>
-<label>RAM<select id="p2" class="field"><option value="">Pilih</option><option value="temp">Menyimpan sementara data dan arahan</option><option value="display">Memaparkan output</option></select></label>
-<label>Hard Disk<select id="p3" class="field"><option value="">Pilih</option><option value="store">Menyimpan data, aplikasi dan OS</option><option value="input">Memasukkan arahan</option></select></label>
-<label>Tetikus<select id="p4" class="field"><option value="">Pilih</option><option value="input">Peranti input</option><option value="output">Peranti output</option></select></label>
-</div><button class="primary-button" onclick="checkMatching()">Semak Jawapan</button><div id="matchResult"></div></article>
-<article class="section glass-panel"><h2>Aktiviti 2: Klasifikasi Peranti</h2><div class="classify-grid"><button data-kind="input" onclick="classify(this,'input')">⌨️ Papan Kekunci</button><button data-kind="output" onclick="classify(this,'output')">🖨️ Pencetak</button><button data-kind="input" onclick="classify(this,'input')">🖱️ Tetikus</button><button data-kind="output" onclick="classify(this,'output')">🖥️ Monitor</button></div><div id="classifyResult"></div></article>
-</section>
-<section id="technicianMode" class="mode-content">
-<article class="section glass-panel"><p class="eyebrow">JOB REQUEST #C01-002</p><h2>Komputer Perlahan Apabila Banyak Aplikasi Dibuka</h2><div class="customer"><div>👨‍💼</div><p>Pelanggan menggunakan komputer pejabat untuk dokumen, e-mel dan pelayar web. Apabila banyak aplikasi dibuka serentak, komputer menjadi perlahan.</p></div><div class="recommend-grid"><button onclick="chooseUpgrade('ram')">⚡ Tambah RAM</button><button onclick="chooseUpgrade('printer')">🖨️ Tukar Pencetak</button><button onclick="chooseUpgrade('monitor')">🖥️ Tukar Monitor</button><button onclick="chooseUpgrade('mouse')">🖱️ Tukar Tetikus</button></div><div id="techFeedback"></div></article>
-<article class="section glass-panel"><h2>Penilaian Prestasi Kerja</h2><div class="score-list"><div><span>Analisis Masalah</span><strong id="analysisScore">0%</strong></div><div><span>Ketepatan Cadangan</span><strong id="accuracyScore">0%</strong></div><div><span>Justifikasi</span><strong id="justificationScore">0%</strong></div></div></article>
-</section>
-<footer class="kp02-footer glass-panel"><div><strong>KP02 Progress</strong><div class="progress"><span id="progressBar"></span></div></div><button class="primary-button" onclick="completeKP02()">SELESAI KP02 & TERUS KE KT02</button></footer>
-</main>
-<script src="../../storage.js"></script><script src="../../language.js"></script><script src="../../missions.js"></script><script src="../../core/byte-ai.js"></script><script src="../../core/scoring-engine.js"></script><script src="../../core/sound-engine.js"></script><script src="../../core/animation-engine.js"></script><script src="../../core/mission-engine.js"></script><script src="script.js?v=1"></script><script src="practice.js?v=1"></script><script src="simulation.js?v=1"></script>
-</body></html>
+  <div id="app"></div>
+  <script src="app.js"></script>
+</body>
+</html>
