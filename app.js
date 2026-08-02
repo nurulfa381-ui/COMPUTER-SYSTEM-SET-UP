@@ -846,8 +846,8 @@ function renderCollegeHeader() {
     <div class="college-header">
       <div class="college-logo">
         <img
-          src="assets/image/logo-kolej.png?v=5"
-          data-fallbacks="assets/image/logo-kolej.PNG?v=5|assets/logo-kolej.png?v=5|assets/logo-kolej.PNG?v=5|logo-kolej.png?v=5|assets/logo-mentari.png?v=5|assets/logo-mentari.PNG?v=5|logo-mentari.png?v=5|logo-mentari.PNG?v=5|assets/Logo-Mentari.png?v=5"
+          src="assets/images/logo-kolej.png?v=6"
+          data-fallbacks="assets/images/logo-kolej.PNG?v=6|assets/image/logo-kolej.png?v=6|assets/image/logo-kolej.PNG?v=6|assets/logo-kolej.png?v=6|assets/logo-kolej.PNG?v=6|logo-kolej.png?v=6|assets/logo-mentari.png?v=6|assets/logo-mentari.PNG?v=6|logo-mentari.png?v=6|logo-mentari.PNG?v=6|assets/Logo-Mentari.png?v=6"
           alt="Logo Kolej Kemahiran Mentari"
           onerror="handleLogoError(this);"
         >
