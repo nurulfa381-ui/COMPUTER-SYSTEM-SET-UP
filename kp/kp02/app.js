@@ -1514,6 +1514,35 @@ function renderKp02Premium() {
     <div class="kp01-grid">
       <div class="panel lesson-box">
         <h2>${labels.video}</h2>
+        <div class="kp02-video" aria-label="${labels.video}">
+          <div class="kp02-video-progress"></div>
+          <div class="kp02-video-frame kf-1">
+            <span>01</span>
+            <strong>${bm ? "Baca Checklist KP02" : "Read KP02 Checklist"}</strong>
+            <small>${bm ? "Rujuk job request sebelum ambil item." : "Refer to the job request before collecting items."}</small>
+          </div>
+          <div class="kp02-video-frame kf-2">
+            <span>02</span>
+            <strong>${bm ? "Sediakan Tools" : "Prepare Tools"}</strong>
+            <small>${bm ? "Pemutar skru, anti-static strap, cable tie, thermal paste." : "Screwdriver, anti-static strap, cable ties, thermal paste."}</small>
+          </div>
+          <div class="kp02-video-frame kf-3">
+            <span>03</span>
+            <strong>${bm ? "Semak Hardware" : "Check Hardware"}</strong>
+            <small>${bm ? "Motherboard, CPU, RAM, SSD, PSU dan casing." : "Motherboard, CPU, RAM, SSD, PSU and casing."}</small>
+          </div>
+          <div class="kp02-video-frame kf-4">
+            <span>04</span>
+            <strong>${bm ? "Sediakan Software" : "Prepare Software"}</strong>
+            <small>${bm ? "OS installer, driver, browser, Office, antivirus." : "OS installer, drivers, browser, Office, antivirus."}</small>
+          </div>
+          <div class="kp02-video-frame kf-5">
+            <span>05</span>
+            <strong>${bm ? "Sahkan Safety & Lesen" : "Confirm Safety & Licence"}</strong>
+            <small>${bm ? "ESD, ruang kerja, lesen dan kelulusan penyelia." : "ESD, work area, licence and supervisor approval."}</small>
+          </div>
+          <div class="kp02-video-caption">${bm ? "Animasi auto: item disediakan sebelum pemasangan komputer." : "Auto animation: items are prepared before computer installation."}</div>
+        </div>
         <div class="kit-video">
           <div class="kit-belt">
             ${kitSteps.map((step, index) => `<div class="kit-step" style="--delay:${index}">${step}</div>`).join("")}
