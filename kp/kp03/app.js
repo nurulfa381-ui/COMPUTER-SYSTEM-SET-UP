@@ -147,7 +147,12 @@ const missions = [
       "Keselamatan kerja wajib dipatuhi: matikan bekalan kuasa, elakkan ESD, jangan pegang pin/contacts komponen, dan susun skru supaya tidak hilang.",
       "Lesen perisian, versi OS dan keperluan organisasi perlu disahkan. Jangan pasang software yang tiada arahan atau tiada lesen sah.",
       "Meja kerja perlu kemas, terang dan bebas cecair. Komponen sensitif seperti CPU, RAM dan motherboard perlu diletakkan di kawasan selamat.",
-      "Semua item mesti ditanda dalam checklist sebelum pemasangan. Jika ada item tidak cukup, juruteknik perlu maklumkan penyelia sebelum meneruskan kerja."
+      "Semua item mesti ditanda dalam checklist sebelum pemasangan. Jika ada item tidak cukup, juruteknik perlu maklumkan penyelia sebelum meneruskan kerja.",
+      "Tools diagnostik seperti cable tester, multimeter dan POST card boleh digunakan jika kerja melibatkan semakan sambungan, kuasa atau kegagalan boot.",
+      "Komponen perlu disimpan dalam packaging anti-static sehingga masa pemasangan untuk mengurangkan risiko kerosakan akibat elektrik statik atau hentakan.",
+      "Penyediaan hardware juga perlu mengambil kira airflow casing, jumlah fan, ruang GPU, jenis form factor motherboard dan panjang kabel.",
+      "Penyediaan software perlu termasuk fail offline driver jika rangkaian belum tersedia selepas OS dipasang.",
+      "Sebelum kerja bermula, juruteknik perlu membuat keputusan: item boleh terus digunakan, item perlu diganti, item perlu disahkan atau item tidak berkaitan dengan job request."
     ],
     notesEn: [
       "KP02 preparation starts after KP01 analysis. The technician must refer to the job request and checklist so tools, hardware and software match the actual work.",
@@ -158,7 +163,12 @@ const missions = [
       "Work safety must be followed: switch off power, prevent ESD, avoid touching component pins/contacts, and organise screws so they are not lost.",
       "Software licences, OS version and organisation requirements must be confirmed. Do not install software that is not requested or not properly licensed.",
       "The workbench must be tidy, bright and free from liquids. Sensitive components such as CPU, RAM and motherboard must be placed in a safe area.",
-      "Every item must be ticked in the checklist before installation. If an item is missing, the technician must inform the supervisor before continuing."
+      "Every item must be ticked in the checklist before installation. If an item is missing, the technician must inform the supervisor before continuing.",
+      "Diagnostic tools such as cable tester, multimeter and POST card can be used when the work involves checking connection, power or boot failure.",
+      "Components should remain in anti-static packaging until installation time to reduce damage from static electricity or physical impact.",
+      "Hardware preparation should also consider casing airflow, fan quantity, GPU clearance, motherboard form factor and cable length.",
+      "Software preparation should include offline driver files if network access may not be available after OS installation.",
+      "Before work starts, the technician must decide whether each item can be used, must be replaced, needs confirmation or is not related to the job request."
     ],
     activityBm: "Sediakan kit kerja lengkap berdasarkan tiket KP01: asingkan tools, hardware, software, keselamatan dan item yang perlu disahkan.",
     activityEn: "Prepare a complete work kit based on the KP01 ticket: separate tools, hardware, software, safety items and items requiring confirmation."
@@ -202,22 +212,36 @@ const missions = [
     code: "KP04",
     titleBm: "Peralatan Pemasangan Perkakasan",
     titleEn: "Hardware Installation Tools",
-    scopeBm: "Gunakan peralatan pemasangan dengan betul dan selamat.",
-    scopeEn: "Use installation tools correctly and safely.",
+    scopeBm: "Gunakan peralatan pemasangan perkakasan dengan betul, selamat dan mengikut prosedur kerja.",
+    scopeEn: "Use hardware installation tools correctly, safely and according to work procedure.",
     notesBm: [
-      "Matikan bekalan kuasa sebelum membuka casing.",
-      "Gunakan anti-static wrist strap untuk mengurangkan risiko ESD.",
-      "Jangan gunakan daya berlebihan ketika memasang RAM atau kabel.",
-      "Simpan skru mengikut jenis supaya pemasangan semula lebih kemas."
+      "Peralatan pemasangan perkakasan digunakan untuk membuka casing, memasang komponen, mengurus kabel, membersihkan kawasan kerja dan mengurangkan risiko kerosakan.",
+      "Sebelum kerja dimulakan, komputer mesti dimatikan, kabel kuasa dicabut, suis PSU dimatikan dan juruteknik perlu menekan butang power beberapa saat untuk nyahcas baki elektrik.",
+      "Anti-static wrist strap dan anti-static mat digunakan untuk mengurangkan risiko Electrostatic Discharge (ESD) yang boleh merosakkan CPU, RAM, motherboard dan storage.",
+      "Pemutar skru Phillips digunakan untuk skru casing, motherboard, PSU dan storage. Saiz mata pemutar skru mesti sesuai supaya kepala skru tidak rosak.",
+      "Bekas skru atau screw tray penting untuk mengasingkan skru casing, motherboard, PSU dan storage supaya tidak hilang atau tertukar.",
+      "Thermal paste digunakan antara CPU dan cooler untuk membantu pemindahan haba. Kuantiti perlu sederhana, tidak terlalu banyak dan tidak terlalu sedikit.",
+      "Cable tie atau velcro strap digunakan untuk mengemas kabel supaya aliran udara casing tidak terhalang dan kerja troubleshooting lebih mudah.",
+      "Berus lembut, blower dan kain microfiber digunakan untuk membersihkan habuk. Cecair pembersih hanya digunakan jika sesuai dan tidak terkena komponen aktif.",
+      "Juruteknik tidak boleh menggunakan daya berlebihan ketika memasang RAM, kabel power, kabel SATA atau expansion card kerana boleh merosakkan slot.",
+      "Semua tools perlu diperiksa sebelum digunakan. Tools yang rosak, berkarat, longgar atau tidak sesuai boleh menyebabkan kecederaan dan kerosakan komponen.",
+      "Prosedur kerja yang baik ialah sediakan tools, pakai ESD protection, buka casing, simpan skru, pasang komponen, kemas kabel, semak sambungan dan tutup casing semula."
     ],
     notesEn: [
-      "Turn off the power supply before opening the casing.",
-      "Use an anti-static wrist strap to reduce ESD risk.",
-      "Do not use excessive force when installing RAM or cables.",
-      "Sort screws by type to make reassembly cleaner."
+      "Hardware installation tools are used to open the casing, install components, manage cables, clean the work area and reduce damage risk.",
+      "Before work starts, the computer must be shut down, power cable unplugged, PSU switch turned off and the technician should press the power button for a few seconds to discharge remaining electricity.",
+      "Anti-static wrist strap and anti-static mat are used to reduce Electrostatic Discharge (ESD) risk that can damage CPU, RAM, motherboard and storage.",
+      "A Phillips screwdriver is used for casing, motherboard, PSU and storage screws. The screwdriver tip size must match the screw head to avoid damage.",
+      "A screw tray is important for separating casing, motherboard, PSU and storage screws so they are not lost or mixed.",
+      "Thermal paste is applied between CPU and cooler to help heat transfer. The amount should be moderate, not too much and not too little.",
+      "Cable ties or velcro straps are used to organise cables so casing airflow is not blocked and troubleshooting is easier.",
+      "Soft brush, blower and microfiber cloth are used to clean dust. Cleaning liquid is used only when suitable and must not touch active components.",
+      "The technician must not use excessive force when installing RAM, power cables, SATA cables or expansion cards because slots can be damaged.",
+      "All tools must be inspected before use. Damaged, rusty, loose or unsuitable tools can cause injury and component damage.",
+      "A good work procedure is to prepare tools, wear ESD protection, open the casing, store screws, install components, manage cables, check connections and close the casing."
     ],
-    activityBm: "Susun prosedur keselamatan sebelum membuka CPU.",
-    activityEn: "Arrange the safety procedure before opening a PC case."
+    activityBm: "Susun prosedur keselamatan, pilih tools yang sesuai dan latih cara membuka casing, menyimpan skru serta mengemas kabel.",
+    activityEn: "Arrange the safety procedure, select suitable tools and practise opening the casing, storing screws and managing cables."
   },
   {
     id: 5,
@@ -822,8 +846,8 @@ function renderCollegeHeader() {
     <div class="college-header">
       <div class="college-logo">
         <img
-          src="assets/logo-mentari.png?v=3"
-          data-fallbacks="assets/logo-mentari.PNG?v=3|logo-mentari.png?v=3|logo-mentari.PNG?v=3|assets/Logo-Mentari.png?v=3"
+          src="assets/images/logo-kolej.png?v=6"
+          data-fallbacks="assets/images/logo-kolej.PNG?v=6|assets/image/logo-kolej.png?v=6|assets/image/logo-kolej.PNG?v=6|assets/logo-kolej.png?v=6|assets/logo-kolej.PNG?v=6|logo-kolej.png?v=6|assets/logo-mentari.png?v=6|assets/logo-mentari.PNG?v=6|logo-mentari.png?v=6|logo-mentari.PNG?v=6|assets/Logo-Mentari.png?v=6"
           alt="Logo Kolej Kemahiran Mentari"
           onerror="handleLogoError(this);"
         >
@@ -1141,6 +1165,7 @@ function renderMission(id) {
       ${mission.id === 1 ? renderKp01Premium() : ""}
       ${mission.id === 2 ? renderKp02Premium() : ""}
       ${mission.id === 3 ? renderKp03Premium() : ""}
+      ${mission.id === 4 ? renderKp04Premium() : ""}
       <div id="quizMount"></div>
     </section>
   `);
@@ -1148,6 +1173,7 @@ function renderMission(id) {
   if (mission.id === 1) bindKp01Game();
   if (mission.id === 2) bindKp02Game();
   if (mission.id === 3) bindKp03Game();
+  if (mission.id === 4) bindKp04Game();
 }
 
 function renderSimulation(mission) {
@@ -1400,6 +1426,54 @@ function renderKp02Premium() {
         ["Confirmation", "Software licence, OS version, component compatibility, supervisor approval"]
       ];
 
+  const inventory = bm
+    ? [
+        ["Tools tangan", "Pemutar skru Phillips/flat, tweezer, bekas skru, cable tie, flashlight"],
+        ["Tools keselamatan", "Anti-static wrist strap, anti-static mat, glove sesuai, label keselamatan"],
+        ["Tools pembersihan", "Blower, berus lembut, kain microfiber, isopropyl alcohol jika sesuai"],
+        ["Tools diagnostik", "Cable tester, multimeter, POST card, spare LAN cable, spare power cable"],
+        ["Hardware utama", "Motherboard, CPU, RAM, SSD/HDD/NVMe, PSU, casing, GPU jika diperlukan"],
+        ["Hardware sokongan", "CPU cooler, casing fan, SATA cable, power cable, screw set, bracket"],
+        ["Software asas", "OS installer, chipset driver, network driver, audio driver, graphic driver"],
+        ["Software pengguna", "Office app, browser, PDF reader, antivirus, compression tool, utility tool"]
+      ]
+    : [
+        ["Hand tools", "Phillips/flat screwdriver, tweezers, screw tray, cable ties, flashlight"],
+        ["Safety tools", "Anti-static wrist strap, anti-static mat, suitable gloves, safety labels"],
+        ["Cleaning tools", "Blower, soft brush, microfiber cloth, isopropyl alcohol when suitable"],
+        ["Diagnostic tools", "Cable tester, multimeter, POST card, spare LAN cable, spare power cable"],
+        ["Main hardware", "Motherboard, CPU, RAM, SSD/HDD/NVMe, PSU, casing, GPU when required"],
+        ["Support hardware", "CPU cooler, casing fan, SATA cable, power cable, screw set, bracket"],
+        ["Basic software", "OS installer, chipset driver, network driver, audio driver, graphic driver"],
+        ["User software", "Office app, browser, PDF reader, antivirus, compression tool, utility tool"]
+      ];
+
+  const scenarios = bm
+    ? [
+        ["Komputer Pejabat", "Utamakan OS, Office, browser, PDF reader, antivirus, printer driver dan rangkaian."],
+        ["Komputer Reka Bentuk Asas", "Utamakan RAM lebih tinggi, SSD/NVMe, GPU sesuai, driver graphic dan ruang storage."],
+        ["Komputer Kaunter", "Utamakan printer/scanner, rangkaian stabil, aplikasi kerja, backup power dan ujian periferal."]
+      ]
+    : [
+        ["Office Computer", "Prioritise OS, Office, browser, PDF reader, antivirus, printer driver and network."],
+        ["Basic Design Computer", "Prioritise higher RAM, SSD/NVMe, suitable GPU, graphic driver and storage space."],
+        ["Counter Computer", "Prioritise printer/scanner, stable network, work application, backup power and peripheral test."]
+      ];
+
+  const decisionItems = bm
+    ? [
+        ["Boleh guna", "Item lengkap, serasi, selamat dan menepati job request."],
+        ["Perlu ganti", "Item rosak, tidak serasi, kapasiti tidak cukup atau tidak sesuai dengan skop kerja."],
+        ["Perlu sahkan", "Lesen, versi OS, spesifikasi tambahan atau kelulusan penyelia belum jelas."],
+        ["Tidak berkaitan", "Item tidak diminta dalam job request dan tidak menyokong kerja set-up."]
+      ]
+    : [
+        ["Ready to use", "Item is complete, compatible, safe and matches the job request."],
+        ["Need replacement", "Item is faulty, incompatible, insufficient or unsuitable for the work scope."],
+        ["Need confirmation", "Licence, OS version, extra specification or supervisor approval is unclear."],
+        ["Not related", "Item is not requested in the job request and does not support the setup work."]
+      ];
+
   const activities = bm
     ? [
         "Aktiviti 1: Pelajar baca tiket KP01 dan bina checklist KP02 sendiri.",
@@ -1407,7 +1481,11 @@ function renderKp02Premium() {
         "Aktiviti 3: Pelajar semak keserasian motherboard, CPU, RAM dan storage berdasarkan senario guru.",
         "Aktiviti 4: Pelajar pilih software wajib untuk komputer pejabat dan jelaskan sebab pilihan.",
         "Aktiviti 5: Pelajar buat pemeriksaan keselamatan sebelum membuka casing.",
-        "Aktiviti 6: Pelajar lakon situasi melapor item tidak cukup kepada penyelia sebelum kerja diteruskan."
+        "Aktiviti 6: Pelajar lakon situasi melapor item tidak cukup kepada penyelia sebelum kerja diteruskan.",
+        "Aktiviti 7: Pelajar pilih kit kerja untuk tiga senario: pejabat, reka bentuk asas dan kaunter.",
+        "Aktiviti 8: Pelajar buat keputusan item: boleh guna, perlu ganti, perlu sahkan atau tidak berkaitan.",
+        "Aktiviti 9: Pelajar semak USB bootable dan senaraikan risiko jika installer/driver tiada.",
+        "Aktiviti 10: Pelajar bentangkan checklist akhir sebelum kerja pemasangan dimulakan."
       ]
     : [
         "Activity 1: Students read the KP01 ticket and create their own KP02 checklist.",
@@ -1415,7 +1493,11 @@ function renderKp02Premium() {
         "Activity 3: Students check motherboard, CPU, RAM and storage compatibility using a teacher scenario.",
         "Activity 4: Students choose required software for an office PC and explain the reason.",
         "Activity 5: Students perform safety checks before opening the casing.",
-        "Activity 6: Students role-play reporting missing items to the supervisor before continuing work."
+        "Activity 6: Students role-play reporting missing items to the supervisor before continuing work.",
+        "Activity 7: Students choose a work kit for three scenarios: office, basic design and counter PC.",
+        "Activity 8: Students decide item status: ready to use, need replacement, need confirmation or not related.",
+        "Activity 9: Students test bootable USB and list risks if installer/driver is missing.",
+        "Activity 10: Students present the final checklist before installation begins."
       ];
 
   const gameItems = bm
@@ -1448,6 +1530,35 @@ function renderKp02Premium() {
     <div class="kp01-grid">
       <div class="panel lesson-box">
         <h2>${labels.video}</h2>
+        <div class="kp02-video" aria-label="${labels.video}">
+          <div class="kp02-video-progress"></div>
+          <div class="kp02-video-frame kf-1">
+            <span>01</span>
+            <strong>${bm ? "Baca Checklist KP02" : "Read KP02 Checklist"}</strong>
+            <small>${bm ? "Rujuk job request sebelum ambil item." : "Refer to the job request before collecting items."}</small>
+          </div>
+          <div class="kp02-video-frame kf-2">
+            <span>02</span>
+            <strong>${bm ? "Sediakan Tools" : "Prepare Tools"}</strong>
+            <small>${bm ? "Pemutar skru, anti-static strap, cable tie, thermal paste." : "Screwdriver, anti-static strap, cable ties, thermal paste."}</small>
+          </div>
+          <div class="kp02-video-frame kf-3">
+            <span>03</span>
+            <strong>${bm ? "Semak Hardware" : "Check Hardware"}</strong>
+            <small>${bm ? "Motherboard, CPU, RAM, SSD, PSU dan casing." : "Motherboard, CPU, RAM, SSD, PSU and casing."}</small>
+          </div>
+          <div class="kp02-video-frame kf-4">
+            <span>04</span>
+            <strong>${bm ? "Sediakan Software" : "Prepare Software"}</strong>
+            <small>${bm ? "OS installer, driver, browser, Office, antivirus." : "OS installer, drivers, browser, Office, antivirus."}</small>
+          </div>
+          <div class="kp02-video-frame kf-5">
+            <span>05</span>
+            <strong>${bm ? "Sahkan Safety & Lesen" : "Confirm Safety & Licence"}</strong>
+            <small>${bm ? "ESD, ruang kerja, lesen dan kelulusan penyelia." : "ESD, work area, licence and supervisor approval."}</small>
+          </div>
+          <div class="kp02-video-caption">${bm ? "Animasi auto: item disediakan sebelum pemasangan komputer." : "Auto animation: items are prepared before computer installation."}</div>
+        </div>
         <div class="kit-video">
           <div class="kit-belt">
             ${kitSteps.map((step, index) => `<div class="kit-step" style="--delay:${index}">${step}</div>`).join("")}
@@ -1477,6 +1588,27 @@ function renderKp02Premium() {
         <h2>${labels.kit}</h2>
         <div class="tool-kit-grid">
           ${checklist.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box wide">
+        <h2>${bm ? "Inventori Lengkap KP02" : "Complete KP02 Inventory"}</h2>
+        <div class="inventory-grid">
+          ${inventory.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${bm ? "Simulasi Senario Kit Kerja" : "Work Kit Scenario Simulation"}</h2>
+        <div class="scenario-stack">
+          ${scenarios.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${bm ? "Keputusan Sebelum Pemasangan" : "Pre-Installation Decision"}</h2>
+        <div class="decision-grid">
+          ${decisionItems.map(([title, detail]) => `<div><strong>${title}</strong><span>${detail}</span></div>`).join("")}
         </div>
       </div>
 
@@ -1654,12 +1786,12 @@ function renderKp03Premium() {
         <h2>${labels.board}</h2>
         <div class="motherboard-sim">
           <div class="mb-shape">
-            <div class="mb-part cpu">CPU</div>
-            <div class="mb-part ram">RAM</div>
-            <div class="mb-part m2">M.2</div>
-            <div class="mb-part pcie">PCIe</div>
-            <div class="mb-part sata">SATA</div>
-            <div class="mb-part power">24-pin</div>
+            <button class="mb-part cpu" data-kp03-hotspot="CPU Socket" data-info="${bm ? "Tempat CPU dipasang. Pastikan socket CPU serasi dengan motherboard." : "CPU installation area. Make sure CPU socket is compatible with the motherboard."}">CPU</button>
+            <button class="mb-part ram" data-kp03-hotspot="RAM Slot" data-info="${bm ? "Tempat RAM dipasang. Semak jenis DDR, kapasiti dan slot yang sesuai." : "RAM installation slots. Check DDR type, capacity and suitable slots."}">RAM</button>
+            <button class="mb-part m2" data-kp03-hotspot="M.2 Slot" data-info="${bm ? "Slot untuk NVMe M.2 SSD. Memberi capaian storage yang lebih laju." : "Slot for NVMe M.2 SSD. Provides faster storage access."}">M.2</button>
+            <button class="mb-part pcie" data-kp03-hotspot="PCIe Slot" data-info="${bm ? "Slot untuk GPU atau expansion card seperti network/sound card." : "Slot for GPU or expansion cards such as network/sound card."}">PCIe</button>
+            <button class="mb-part sata" data-kp03-hotspot="SATA Port" data-info="${bm ? "Port data untuk HDD/SSD SATA. Perlu kabel SATA data dan SATA power." : "Data port for SATA HDD/SSD. Requires SATA data cable and SATA power."}">SATA</button>
+            <button class="mb-part power" data-kp03-hotspot="24-pin Power" data-info="${bm ? "Connector kuasa utama motherboard daripada PSU." : "Main motherboard power connector from PSU."}">24-pin</button>
             <div class="mb-trace t1"></div>
             <div class="mb-trace t2"></div>
             <div class="mb-trace t3"></div>
@@ -1668,18 +1800,24 @@ function renderKp03Premium() {
             ${boardLabels.map(([title, detail]) => `<div><strong>${title}</strong><span>${detail}</span></div>`).join("")}
           </div>
         </div>
+        <div id="kp03HotspotResult" class="hotspot-result">
+          ${bm ? "Klik mana-mana bahagian pada motherboard untuk melihat fungsi komponen." : "Click any motherboard area to view the component function."}
+        </div>
       </div>
 
       <div class="panel lesson-box">
         <h2>${labels.ports}</h2>
         <div class="port-map">
-          ${portRows.map(([port, cable, use]) => `
-            <div class="port-row">
+          ${portRows.map(([port, cable, use], index) => `
+            <button class="port-row" data-kp03-port="${port}" data-info="${cable} - ${use}" style="--delay:${index}">
               <strong>${port}</strong>
               <span>${cable}</span>
               <small>${use}</small>
-            </div>
+            </button>
           `).join("")}
+        </div>
+        <div id="kp03PortResult" class="hotspot-result">
+          ${bm ? "Klik port untuk lihat kabel dan fungsi." : "Click a port to view its cable and function."}
         </div>
       </div>
 
@@ -1716,6 +1854,24 @@ function renderKp03Premium() {
 }
 
 function bindKp03Game() {
+  document.querySelectorAll("[data-kp03-hotspot]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const result = document.getElementById("kp03HotspotResult");
+      document.querySelectorAll("[data-kp03-hotspot]").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      result.innerHTML = `<strong>${button.dataset.kp03Hotspot}</strong><span>${button.dataset.info}</span>`;
+    });
+  });
+
+  document.querySelectorAll("[data-kp03-port]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const result = document.getElementById("kp03PortResult");
+      document.querySelectorAll("[data-kp03-port]").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      result.innerHTML = `<strong>${button.dataset.kp03Port}</strong><span>${button.dataset.info}</span>`;
+    });
+  });
+
   document.querySelectorAll("[data-kp03-answer]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = document.querySelector(`[data-kp03-card="${button.dataset.card}"]`);
@@ -1724,6 +1880,219 @@ function bindKp03Game() {
       const correct = button.dataset.kp03Answer === button.dataset.correct;
 
       card.querySelectorAll("[data-kp03-answer]").forEach((item) => item.classList.remove("selected"));
+      button.classList.add("selected");
+      card.classList.toggle("correct", correct);
+      card.classList.toggle("incorrect", !correct);
+      result.innerHTML = `<div class="${correct ? "success-note" : "error"}">${correct ? gameText.dataset.done : gameText.dataset.wrong}</div>`;
+    });
+  });
+}
+
+function renderKp04Premium() {
+  const bm = state.lang === "bm";
+  const labels = bm
+    ? {
+        video: "Video Ringkas: Prosedur Tools Sebelum Buka Casing",
+        esd: "Simulasi ESD dan Keselamatan Komponen",
+        tools: "Peta Tools Pemasangan Perkakasan",
+        procedure: "Urutan Kerja Selamat",
+        activities: "Aktiviti Pelajar",
+        game: "Mini Game: Pilih Tool Yang Betul",
+        gameHelp: "Klik tool yang sesuai untuk setiap situasi kerja.",
+        done: "Betul. Tool yang dipilih sesuai dengan situasi kerja.",
+        wrong: "Belum tepat. Semak semula fungsi tool tersebut."
+      }
+    : {
+        video: "Short Video: Tool Procedure Before Opening Casing",
+        esd: "ESD and Component Safety Simulation",
+        tools: "Hardware Installation Tool Map",
+        procedure: "Safe Work Sequence",
+        activities: "Student Activities",
+        game: "Mini Game: Choose the Correct Tool",
+        gameHelp: "Click the suitable tool for each work situation.",
+        done: "Correct. The selected tool matches the work situation.",
+        wrong: "Not yet. Check the tool function again."
+      };
+
+  const frames = bm
+    ? [
+        ["01", "Matikan Kuasa", "Shutdown, cabut kabel kuasa dan matikan suis PSU."],
+        ["02", "Pakai ESD Protection", "Gunakan anti-static wrist strap atau anti-static mat."],
+        ["03", "Buka Casing", "Gunakan pemutar skru yang sesuai dan simpan skru."],
+        ["04", "Pasang Komponen", "Elakkan sentuh pin dan jangan guna daya berlebihan."],
+        ["05", "Kemas Kabel", "Gunakan cable tie/velcro supaya airflow tidak terhalang."]
+      ]
+    : [
+        ["01", "Turn Off Power", "Shutdown, unplug power cable and turn off PSU switch."],
+        ["02", "Wear ESD Protection", "Use anti-static wrist strap or anti-static mat."],
+        ["03", "Open Casing", "Use a suitable screwdriver and store screws."],
+        ["04", "Install Components", "Avoid touching pins and do not use excessive force."],
+        ["05", "Manage Cables", "Use cable ties/velcro so airflow is not blocked."]
+      ];
+
+  const toolMap = bm
+    ? [
+        ["Pemutar skru Phillips", "Membuka dan mengetatkan skru casing, motherboard, PSU dan storage."],
+        ["Anti-static wrist strap", "Mengurangkan risiko ESD ketika memegang komponen sensitif."],
+        ["Screw tray", "Menyimpan skru mengikut jenis supaya tidak hilang."],
+        ["Thermal paste", "Membantu pemindahan haba antara CPU dan cooler."],
+        ["Cable tie / velcro", "Mengemas kabel dan menjaga aliran udara casing."],
+        ["Blower / berus lembut", "Membersihkan habuk tanpa merosakkan komponen."],
+        ["Microfiber cloth", "Membersihkan permukaan casing atau panel dengan selamat."],
+        ["Multimeter", "Membantu semakan asas bekalan kuasa jika diperlukan."]
+      ]
+    : [
+        ["Phillips screwdriver", "Open and tighten casing, motherboard, PSU and storage screws."],
+        ["Anti-static wrist strap", "Reduce ESD risk when handling sensitive components."],
+        ["Screw tray", "Store screws by type so they are not lost."],
+        ["Thermal paste", "Helps heat transfer between CPU and cooler."],
+        ["Cable tie / velcro", "Organise cables and maintain casing airflow."],
+        ["Blower / soft brush", "Clean dust without damaging components."],
+        ["Microfiber cloth", "Safely clean casing surface or panels."],
+        ["Multimeter", "Helps basic power supply checking when required."]
+      ];
+
+  const procedure = bm
+    ? ["Sediakan tools", "Shutdown dan cabut kuasa", "Pakai ESD protection", "Buka casing", "Simpan skru", "Pasang/semak komponen", "Kemas kabel", "Semak sambungan", "Tutup casing"]
+    : ["Prepare tools", "Shutdown and unplug power", "Wear ESD protection", "Open casing", "Store screws", "Install/check components", "Manage cables", "Check connections", "Close casing"];
+
+  const activities = bm
+    ? [
+        "Aktiviti 1: Pelajar susun urutan kerja selamat sebelum membuka casing.",
+        "Aktiviti 2: Pelajar pilih pemutar skru yang sesuai berdasarkan jenis skru.",
+        "Aktiviti 3: Pelajar asingkan skru casing, motherboard, PSU dan storage dalam screw tray.",
+        "Aktiviti 4: Pelajar tunjuk cara memakai anti-static wrist strap dengan betul.",
+        "Aktiviti 5: Pelajar latihan meletakkan thermal paste pada model CPU secara sederhana.",
+        "Aktiviti 6: Pelajar kemas kabel menggunakan cable tie/velcro tanpa menghalang airflow.",
+        "Aktiviti 7: Pelajar kenal pasti kesilapan kerja seperti pegang pin RAM, guna daya berlebihan atau lupa cabut kuasa.",
+        "Aktiviti 8: Pelajar buat checklist tool inspection sebelum mula kerja."
+      ]
+    : [
+        "Activity 1: Students arrange the safe work sequence before opening the casing.",
+        "Activity 2: Students select a suitable screwdriver based on screw type.",
+        "Activity 3: Students separate casing, motherboard, PSU and storage screws in a screw tray.",
+        "Activity 4: Students demonstrate correct anti-static wrist strap use.",
+        "Activity 5: Students practise applying a moderate amount of thermal paste on a CPU model.",
+        "Activity 6: Students manage cables using cable ties/velcro without blocking airflow.",
+        "Activity 7: Students identify work mistakes such as touching RAM pins, using excessive force or forgetting to unplug power.",
+        "Activity 8: Students complete a tool inspection checklist before starting work."
+      ];
+
+  const gameItems = bm
+    ? [
+        ["Buka skru casing", "screwdriver"],
+        ["Pegang RAM dan motherboard", "esd"],
+        ["Skru kecil mudah hilang", "tray"],
+        ["CPU cepat panas selepas pasang cooler", "paste"],
+        ["Kabel berselerak halang airflow", "tie"],
+        ["Habuk pada casing dan fan", "brush"]
+      ]
+    : [
+        ["Open casing screws", "screwdriver"],
+        ["Handle RAM and motherboard", "esd"],
+        ["Small screws can be lost", "tray"],
+        ["CPU overheats after cooler installation", "paste"],
+        ["Messy cables block airflow", "tie"],
+        ["Dust on casing and fan", "brush"]
+      ];
+
+  const choices = bm
+    ? [
+        ["screwdriver", "Pemutar skru"],
+        ["esd", "Anti-static strap"],
+        ["tray", "Screw tray"],
+        ["paste", "Thermal paste"],
+        ["tie", "Cable tie"],
+        ["brush", "Berus lembut"]
+      ]
+    : [
+        ["screwdriver", "Screwdriver"],
+        ["esd", "Anti-static strap"],
+        ["tray", "Screw tray"],
+        ["paste", "Thermal paste"],
+        ["tie", "Cable tie"],
+        ["brush", "Soft brush"]
+      ];
+
+  return `
+    <div class="kp01-grid">
+      <div class="panel lesson-box">
+        <h2>${labels.video}</h2>
+        <div class="kp04-video">
+          <div class="kp04-video-progress"></div>
+          ${frames.map(([num, title, detail], index) => `
+            <div class="kp04-video-frame k4-${index + 1}">
+              <span>${num}</span>
+              <strong>${title}</strong>
+              <small>${detail}</small>
+            </div>
+          `).join("")}
+          <div class="kp04-tool-orbit">
+            <span>ESD</span>
+            <span>TOOLS</span>
+            <span>SCREW</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.esd}</h2>
+        <div class="esd-sim">
+          <div class="hand-sim">${bm ? "Tangan" : "Hand"}</div>
+          <div class="spark-sim"></div>
+          <div class="component-sim">RAM</div>
+          <p>${bm ? "Gunakan anti-static wrist strap sebelum menyentuh komponen sensitif." : "Use an anti-static wrist strap before touching sensitive components."}</p>
+        </div>
+      </div>
+
+      <div class="panel lesson-box wide">
+        <h2>${labels.tools}</h2>
+        <div class="tool-map-grid">
+          ${toolMap.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.procedure}</h2>
+        <div class="procedure-ladder">
+          ${procedure.map((item, index) => `<div><span>${index + 1}</span><strong>${item}</strong></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.activities}</h2>
+        <ol class="activity-list">${activities.map((item) => `<li>${item}</li>`).join("")}</ol>
+      </div>
+
+      <div class="panel lesson-box wide">
+        <h2>${labels.game}</h2>
+        <p class="muted">${labels.gameHelp}</p>
+        <div class="game-list">
+          ${gameItems.map(([item, answer], index) => `
+            <div class="game-card" data-kp04-card="${index}">
+              <strong>${item}</strong>
+              <div class="game-options">
+                ${choices.map(([value, label]) => `<button class="btn" data-kp04-answer="${value}" data-correct="${answer}" data-card="${index}">${label}</button>`).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <div id="kp04GameResult" class="result"></div>
+        <template id="kp04GameText" data-done="${labels.done}" data-wrong="${labels.wrong}"></template>
+      </div>
+    </div>
+  `;
+}
+
+function bindKp04Game() {
+  document.querySelectorAll("[data-kp04-answer]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = document.querySelector(`[data-kp04-card="${button.dataset.card}"]`);
+      const result = document.getElementById("kp04GameResult");
+      const gameText = document.getElementById("kp04GameText");
+      const correct = button.dataset.kp04Answer === button.dataset.correct;
+
+      card.querySelectorAll("[data-kp04-answer]").forEach((item) => item.classList.remove("selected"));
       button.classList.add("selected");
       card.classList.toggle("correct", correct);
       card.classList.toggle("incorrect", !correct);

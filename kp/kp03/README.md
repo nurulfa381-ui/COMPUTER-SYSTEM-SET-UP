@@ -20,10 +20,14 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - Keputusan formal KT ditambah: nama pelajar, ID, KP/KT, markah, status TERAMPIL/BELUM TERAMPIL, rasmi, locked, tarikh dan ruang pegawai penilai.
 - Markah 60% ke atas disimpan sebagai rasmi dan locked seperti standard C05.
 - Header rasmi kolej ditambah pada slip keputusan dan laporan KT: KOLEJ KEMAHIRAN MENTARI (L02432), alamat Kluang dan nombor telefon.
-- Untuk logo sebenar, tambah fail `assets/logo-mentari.png` di root repo. Nama folder/fail mesti tepat kerana GitHub Pages sensitif huruf besar/kecil.
+- Untuk logo sebenar, tambah fail `assets/images/logo-kolej.png` di root repo. Nama folder/fail mesti tepat kerana GitHub Pages sensitif huruf besar/kecil.
 - KP02 dikemaskini dengan nota lengkap, animasi workbench, simulasi checklist, aktiviti pelajar, mini game kategori tools/hardware/software/safety dan KT02 10 soalan.
 - Jawapan betul KT02 disusun pada kedudukan berbeza.
+- KP02 Upgrade 2 menambah inventori lengkap tools/hardware/software/safety, tools diagnostik, senario kit kerja, decision matrix item dan aktiviti pelajar tambahan.
+- KP02 video/animasi dikemaskini dengan 5 frame auto, progress bar dan workbench animation yang lebih jelas.
 - KP03 dikemaskini untuk kandungan KP sahaja: nota lengkap perkakasan/peralatan komputer, simulasi motherboard, peta port/kabel, peta komponen, aktiviti pelajar dan mini game fungsi komponen.
+- KP03 simulasi dikemaskini dengan hotspot interaktif motherboard dan port/kabel supaya pelajar boleh klik komponen untuk melihat fungsi.
+- KP04 dikemaskini untuk kandungan KP sahaja: nota lengkap peralatan pemasangan perkakasan, video prosedur tools, simulasi ESD, peta tools, urutan kerja selamat, aktiviti pelajar dan mini game pemilihan tools.
 
 ## Fail
 
