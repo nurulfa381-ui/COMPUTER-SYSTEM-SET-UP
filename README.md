@@ -49,6 +49,10 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - KP07 hard update v10: `index.html` kini memanggil `app-kp07-v10.js` dan `style-kp07-v10.css`.
 - Susunan jawapan KT dan mini game dikemaskini supaya jawapan betul tidak berada pada lokasi yang sama; pilihan jawapan dirotasi mengikut nombor soalan/kad.
 - KP07 hard update v11: `index.html` kini memanggil `app-kp07-v11.js` dan `style-kp07-v11.css`.
+- KP08 dikemaskini untuk kandungan KP sahaja: nota lengkap pemasangan sistem operasi, bootable USB, BIOS/UEFI, boot mode, edisi OS, partition, akaun/password, first desktop check, aktiviti pelajar, simulasi urutan OS, animasi installer dan mini game troubleshooting.
+- KP08 hard update v12: `index.html` kini memanggil `app-kp08-v12.js` dan `style-kp08-v12.css`.
+- KP08 v13 function fix: Latihan Simulasi menggunakan delegated click handler global supaya langkah OS dan reset tetap berfungsi pada live page.
+- KP08 hard update v13: `index.html` kini memanggil `app-kp08-v13.js` dan `style-kp08-v13.css`.
 
 ## Fail
 
