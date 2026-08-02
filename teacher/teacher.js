@@ -1,5 +1,5 @@
 const TEACHER_CONFIG = {
-  password: "C01GURU",
+  password: "azfar1986",
   collegeName: "NAMA KOLEJ ANDA"
 };
 
@@ -36,39 +36,46 @@ function ensureCollections(profile) {
 }
 
 function loginTeacher() {
-  const name = teacherNameInput.value.trim();
-  const password = teacherPasswordInput.value;
+  const nameInput = document.getElementById("teacherNameInput");
+  const passwordInput = document.getElementById("teacherPasswordInput");
+  const messageBox = document.getElementById("teacherLoginMessage");
+
+  const name = nameInput.value.trim();
+  const password = passwordInput.value.trim();
 
   if (!name) {
-    teacherLoginMessage.textContent = "Sila masukkan nama Pegawai Penilai.";
+    messageBox.textContent = "Sila masukkan nama Pegawai Penilai.";
     return;
   }
 
   if (password !== TEACHER_CONFIG.password) {
-    teacherLoginMessage.textContent = "Kata laluan Mod Guru tidak tepat.";
+    messageBox.textContent = "Kata laluan Mod Guru tidak tepat.";
     return;
   }
 
   activeTeacherNameValue = name;
-  sessionStorage.setItem("c01ActiveTeacher", name);
-  teacherLoginMessage.textContent = "";
+  sessionStorage.setItem("c01ActiveTeacher", activeTeacherNameValue);
+  messageBox.textContent = "";
+
   openTeacherDashboard();
 }
 
 function openTeacherDashboard() {
-  teacherLoginPanel.style.display = "none";
-  teacherDashboard.style.display = "block";
-  activeTeacherName.textContent = activeTeacherName;
-  document.getElementById("activeTeacherName").textContent = activeTeacherName;
+  document.getElementById("teacherLoginPanel").style.display = "none";
+  document.getElementById("teacherDashboard").style.display = "block";
+  document.getElementById("activeTeacherName").textContent =
+    activeTeacherNameValue;
+
   refreshTeacherDashboard();
 }
 
 function logoutTeacher() {
   sessionStorage.removeItem("c01ActiveTeacher");
   activeTeacherNameValue = "";
-  teacherDashboard.style.display = "none";
-  teacherLoginPanel.style.display = "block";
-  teacherPasswordInput.value = "";
+
+  document.getElementById("teacherDashboard").style.display = "none";
+  document.getElementById("teacherLoginPanel").style.display = "block";
+  document.getElementById("teacherPasswordInput").value = "";
 }
 
 function refreshTeacherDashboard() {
@@ -291,10 +298,10 @@ function openApprovalModal(missionId) {
   approvalModalTitle.textContent =
     pending.ktCode || `KT${String(missionId).padStart(2, "0")}`;
 
-  approvalTeacherName.value = activeTeacherName;
-  approvalComment.value = "";
-  approvalCheckbox.checked = false;
-  approvalMessage.textContent = "";
+  document.getElementById("approvalTeacherName").value = activeTeacherNameValue;
+  document.getElementById("approvalComment").value = "";
+  document.getElementById("approvalCheckbox").checked = false;
+  document.getElementById("approvalMessage").textContent = "";
 
   approvalSummary.innerHTML = `
     <div>
@@ -328,11 +335,11 @@ function openApprovalModal(missionId) {
     </div>
   `;
 
-  approvalModal.classList.remove("hidden");
+  document.getElementById("approvalModal").classList.remove("hidden");
 }
 
 function closeApprovalModal() {
-  approvalModal.classList.add("hidden");
+  document.getElementById("approvalModal").classList.add("hidden");
   selectedMissionId = null;
   selectedPendingRecord = null;
 }
