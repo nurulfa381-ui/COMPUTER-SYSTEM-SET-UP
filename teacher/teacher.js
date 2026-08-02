@@ -36,46 +36,38 @@ function ensureCollections(profile) {
 }
 
 function loginTeacher() {
-  const nameInput = document.getElementById("teacherNameInput");
-  const passwordInput = document.getElementById("teacherPasswordInput");
-  const messageBox = document.getElementById("teacherLoginMessage");
-
-  const name = nameInput.value.trim();
-  const password = passwordInput.value.trim();
+  const name = teacherNameInput.value.trim();
+  const password = teacherPasswordInput.value;
 
   if (!name) {
-    messageBox.textContent = "Sila masukkan nama Pegawai Penilai.";
+    teacherLoginMessage.textContent = "Sila masukkan nama Pegawai Penilai.";
     return;
   }
 
   if (password !== TEACHER_CONFIG.password) {
-    messageBox.textContent = "Kata laluan Mod Guru tidak tepat.";
+    teacherLoginMessage.textContent = "Kata laluan Mod Guru tidak tepat.";
     return;
   }
 
   activeTeacherNameValue = name;
-  sessionStorage.setItem("c01ActiveTeacher", activeTeacherNameValue);
-  messageBox.textContent = "";
-
+  sessionStorage.setItem("c01ActiveTeacher", name);
+  teacherLoginMessage.textContent = "";
   openTeacherDashboard();
 }
 
 function openTeacherDashboard() {
-  document.getElementById("teacherLoginPanel").style.display = "none";
-  document.getElementById("teacherDashboard").style.display = "block";
-  document.getElementById("activeTeacherName").textContent =
-    activeTeacherNameValue;
-
+  teacherLoginPanel.style.display = "none";
+  teacherDashboard.style.display = "block";
+  document.getElementById("activeTeacherName").textContent = activeTeacherNameValue;
   refreshTeacherDashboard();
 }
 
 function logoutTeacher() {
   sessionStorage.removeItem("c01ActiveTeacher");
   activeTeacherNameValue = "";
-
-  document.getElementById("teacherDashboard").style.display = "none";
-  document.getElementById("teacherLoginPanel").style.display = "block";
-  document.getElementById("teacherPasswordInput").value = "";
+  teacherDashboard.style.display = "none";
+  teacherLoginPanel.style.display = "block";
+  teacherPasswordInput.value = "";
 }
 
 function refreshTeacherDashboard() {
@@ -298,10 +290,10 @@ function openApprovalModal(missionId) {
   approvalModalTitle.textContent =
     pending.ktCode || `KT${String(missionId).padStart(2, "0")}`;
 
-  document.getElementById("approvalTeacherName").value = activeTeacherNameValue;
-  document.getElementById("approvalComment").value = "";
-  document.getElementById("approvalCheckbox").checked = false;
-  document.getElementById("approvalMessage").textContent = "";
+  approvalTeacherName.value = activeTeacherNameValue;
+  approvalComment.value = "";
+  approvalCheckbox.checked = false;
+  approvalMessage.textContent = "";
 
   approvalSummary.innerHTML = `
     <div>
@@ -335,11 +327,11 @@ function openApprovalModal(missionId) {
     </div>
   `;
 
-  document.getElementById("approvalModal").classList.remove("hidden");
+  approvalModal.classList.remove("hidden");
 }
 
 function closeApprovalModal() {
-  document.getElementById("approvalModal").classList.add("hidden");
+  approvalModal.classList.add("hidden");
   selectedMissionId = null;
   selectedPendingRecord = null;
 }
