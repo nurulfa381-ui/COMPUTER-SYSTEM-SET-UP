@@ -45,6 +45,10 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - KP06 hard update v8: `index.html` kini memanggil `app-kp06-v8.js` dan `style-kp06-v8.css`.
 - KP06 v9 layout fix: simulasi utama dikemaskini kepada workbench pemasangan yang lebih kemas dengan diagram motherboard, progress bar, safety tags dan feedback ringkas.
 - KP06 hard update v9: `index.html` kini memanggil `app-kp06-v9.js` dan `style-kp06-v9.css`.
+- KP07 dikemaskini untuk kandungan KP sahaja: nota lengkap pemasangan storage dan PSU, sambungan SATA/NVMe, 24-pin ATX, CPU EPS, SATA power, PCIe power, cable management, semakan BIOS/UEFI, simulasi sambungan, animasi laluan kabel, aktiviti pelajar dan mini game kesilapan sambungan.
+- KP07 hard update v10: `index.html` kini memanggil `app-kp07-v10.js` dan `style-kp07-v10.css`.
+- Susunan jawapan KT dan mini game dikemaskini supaya jawapan betul tidak berada pada lokasi yang sama; pilihan jawapan dirotasi mengikut nombor soalan/kad.
+- KP07 hard update v11: `index.html` kini memanggil `app-kp07-v11.js` dan `style-kp07-v11.css`.
 
 ## Fail
 
