@@ -29,6 +29,13 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - KP03 simulasi dikemaskini dengan hotspot interaktif motherboard dan port/kabel supaya pelajar boleh klik komponen untuk melihat fungsi.
 - KP03 simulasi utama dikemaskini: pelajar klik komponen dan pilih fungsi, kemudian sistem beri feedback betul/salah terus.
 - KP04 dikemaskini untuk kandungan KP sahaja: nota lengkap peralatan pemasangan perkakasan, video prosedur tools, simulasi ESD, peta tools, urutan kerja selamat, aktiviti pelajar dan mini game pemilihan tools.
+- KP04 simulasi utama dikemaskini: pelajar pilih situasi kerja dan tool yang betul, kemudian sistem beri feedback betul/salah terus.
+- KP04 simulasi utama diperkukuh dengan force-click handler: butang situasi dan tool memanggil fungsi terus supaya feedback tetap muncul apabila pelajar klik.
+- KP04 Latihan Simulasi diperbesar menjadi workbench interaktif: situasi kerja, pilihan tool, keputusan betul/salah, skor latihan dan langkah penggunaan selamat dipaparkan dalam satu panel latihan.
+- `index.html` dikemaskini dengan nombor versi cache supaya browser memuatkan `app.js` dan `style.css` terbaru.
+- KP01 Latihan Simulasi dikemaskini menjadi aktiviti klik: pilih maklumat tiket kerja, pilih kategori, dapat feedback, skor dan checklist KP02.
+- KP02 Latihan Simulasi dikemaskini menjadi workbench interaktif: pilih item, pilih tray kategori, dapat feedback, skor dan fungsi item.
+- `index.html` dikemaskini kepada versi cache `sim-animasi-v4` untuk memaksa browser memuatkan semua kod simulasi/animasi terbaru.
 
 ## Fail
 

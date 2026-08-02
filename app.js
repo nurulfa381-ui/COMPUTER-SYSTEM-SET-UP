@@ -1177,6 +1177,209 @@ function renderMission(id) {
 }
 
 function renderSimulation(mission) {
+  if (mission.id === 1) {
+    const bm = state.lang === "bm";
+    const ticketItems = bm
+      ? [
+          ["Windows 11 Pro", "software", "Keperluan perisian sistem operasi."],
+          ["RAM 16GB", "hardware", "Keperluan perkakasan selepas change order."],
+          ["Printer rangkaian", "peripheral", "Periferal yang perlu disambung dan diuji."],
+          ["Siap sebelum 3.00 petang", "schedule", "Had masa kerja yang mesti dipatuhi."],
+          ["Lesen Microsoft Office", "risk", "Risiko/pengesahan kerana lesen perlu sah."],
+          ["Capaian internet", "network", "Keperluan rangkaian untuk komputer pengguna."]
+        ]
+      : [
+          ["Windows 11 Pro", "software", "Operating system software requirement."],
+          ["16GB RAM", "hardware", "Hardware requirement after the change order."],
+          ["Network printer", "peripheral", "Peripheral that must be connected and tested."],
+          ["Finish before 3.00 p.m.", "schedule", "Work deadline that must be followed."],
+          ["Microsoft Office licence", "risk", "Risk/confirmation because the licence must be valid."],
+          ["Internet access", "network", "Network requirement for the user computer."]
+        ];
+    const categories = bm
+      ? [["hardware", "Hardware"], ["software", "Software"], ["peripheral", "Periferal"], ["network", "Rangkaian"], ["schedule", "Masa"], ["risk", "Risiko"]]
+      : [["hardware", "Hardware"], ["software", "Software"], ["peripheral", "Peripheral"], ["network", "Network"], ["schedule", "Schedule"], ["risk", "Risk"]];
+
+    return `
+      <div class="main-sim kp01-main-sim">
+        <div class="sim-badge">${bm ? "SIMULASI KP01 - ANALISIS TIKET KERJA" : "KP01 SIMULATION - WORK TICKET ANALYSIS"}</div>
+        <div class="sim-instruction">
+          ${bm ? "Klik satu maklumat daripada tiket kerja, kemudian pilih kategori yang betul." : "Click one work-ticket item, then choose the correct category."}
+        </div>
+        <div class="main-sim-grid">
+          <div class="main-sim-panel">
+            <h3>${bm ? "1. Maklumat tiket kerja" : "1. Work-ticket items"}</h3>
+            <div class="sim-choice-list">
+              ${ticketItems.map(([title, answer, info]) => `
+                <button type="button" class="sim-choice" data-kp01-ticket-item="${title}" data-kp01-answer="${answer}" data-kp01-info="${info}" onclick="selectKp01TicketItem(this)">
+                  <strong>${title}</strong>
+                  <small>${bm ? "Pilih dan kategorikan" : "Select and categorise"}</small>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+          <div class="main-sim-panel">
+            <h3>${bm ? "2. Pilih kategori" : "2. Choose category"}</h3>
+            <div class="sim-category-grid">
+              ${categories.map(([value, label]) => `<button type="button" class="btn" data-kp01-category="${value}" onclick="checkKp01TicketCategory(this)">${label}</button>`).join("")}
+            </div>
+          </div>
+          <div class="main-sim-panel">
+            <h3>${bm ? "3. Maklum balas" : "3. Feedback"}</h3>
+            <div id="kp01MainResult" class="hotspot-result">${bm ? "Belum mula. Pilih maklumat tiket kerja." : "Not started. Choose a work-ticket item."}</div>
+            <div id="kp01MainChecklist" class="procedure-card muted">${bm ? "Checklist KP02 akan dibina selepas jawapan betul." : "KP02 checklist will be built after a correct answer."}</div>
+            <div id="kp01MainScore" class="score-pill">${bm ? "Skor latihan: 0/0" : "Drill score: 0/0"}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (mission.id === 2) {
+    const bm = state.lang === "bm";
+    const items = bm
+      ? [
+          ["Pemutar skru Phillips", "tools", "Tool untuk membuka dan mengetatkan skru casing/perkakasan."],
+          ["Anti-static wrist strap", "safety", "Item keselamatan untuk mengurangkan risiko ESD."],
+          ["Motherboard", "hardware", "Komponen utama tempat CPU, RAM dan kad dipasang."],
+          ["Windows installer USB", "software", "Media pemasangan sistem operasi."],
+          ["Driver chipset", "software", "Perisian pemacu selepas pemasangan OS."],
+          ["RAM DDR4", "hardware", "Memori utama komputer."],
+          ["Thermal paste", "tools", "Bahan sokongan pemasangan CPU cooler."],
+          ["Anti-static mat", "safety", "Permukaan kerja selamat untuk komponen sensitif."]
+        ]
+      : [
+          ["Phillips screwdriver", "tools", "Tool for opening and tightening casing/hardware screws."],
+          ["Anti-static wrist strap", "safety", "Safety item to reduce ESD risk."],
+          ["Motherboard", "hardware", "Main component where CPU, RAM and cards are installed."],
+          ["Windows installer USB", "software", "Operating system installation media."],
+          ["Chipset driver", "software", "Driver software after OS installation."],
+          ["DDR4 RAM", "hardware", "Main computer memory."],
+          ["Thermal paste", "tools", "Support material for CPU cooler installation."],
+          ["Anti-static mat", "safety", "Safe work surface for sensitive components."]
+        ];
+    const trays = bm
+      ? [["tools", "Tools"], ["hardware", "Hardware"], ["software", "Software"], ["safety", "Safety"]]
+      : [["tools", "Tools"], ["hardware", "Hardware"], ["software", "Software"], ["safety", "Safety"]];
+
+    return `
+      <div class="main-sim kp02-main-sim">
+        <div class="sim-badge">${bm ? "SIMULASI KP02 - WORKBENCH KIT KERJA" : "KP02 SIMULATION - WORKBENCH KIT"}</div>
+        <div class="sim-instruction">
+          ${bm ? "Klik item di workbench, kemudian masukkan ke tray kategori yang betul." : "Click an item on the workbench, then place it into the correct category tray."}
+        </div>
+        <div class="animated-workbench">
+          <div class="moving-item item-a">Tools</div>
+          <div class="moving-item item-b">Hardware</div>
+          <div class="moving-item item-c">Software</div>
+          <div class="moving-item item-d">Safety</div>
+          <div class="workbench-line"></div>
+        </div>
+        <div class="main-sim-grid">
+          <div class="main-sim-panel">
+            <h3>${bm ? "1. Item workbench" : "1. Workbench items"}</h3>
+            <div class="sim-choice-list">
+              ${items.map(([title, answer, info]) => `
+                <button type="button" class="sim-choice" data-kp02-work-item="${title}" data-kp02-work-answer="${answer}" data-kp02-work-info="${info}" onclick="selectKp02WorkbenchItem(this)">
+                  <strong>${title}</strong>
+                  <small>${bm ? "Klik untuk asingkan" : "Click to sort"}</small>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+          <div class="main-sim-panel">
+            <h3>${bm ? "2. Tray kategori" : "2. Category trays"}</h3>
+            <div class="sim-category-grid">
+              ${trays.map(([value, label]) => `<button type="button" class="btn tray-btn" data-kp02-tray="${value}" onclick="checkKp02WorkbenchTray(this)">${label}</button>`).join("")}
+            </div>
+          </div>
+          <div class="main-sim-panel">
+            <h3>${bm ? "3. Keputusan workbench" : "3. Workbench result"}</h3>
+            <div id="kp02MainResult" class="hotspot-result">${bm ? "Belum mula. Pilih satu item workbench." : "Not started. Choose one workbench item."}</div>
+            <div id="kp02WorkbenchNote" class="procedure-card muted">${bm ? "Sistem akan jelaskan fungsi item selepas padanan betul." : "The system will explain the item function after a correct match."}</div>
+            <div id="kp02MainScore" class="score-pill">${bm ? "Skor latihan: 0/0" : "Drill score: 0/0"}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (mission.id === 4) {
+    const bm = state.lang === "bm";
+    const situations = bm
+      ? [
+          ["Buka skru casing", "screwdriver", "Gunakan pemutar skru Phillips yang sesuai supaya kepala skru tidak rosak.", ["Matikan komputer dan cabut kabel kuasa.", "Pilih saiz pemutar skru yang sepadan.", "Longgarkan skru dan simpan dalam tray."]],
+          ["Pegang RAM / motherboard", "esd", "Gunakan anti-static wrist strap untuk kurangkan risiko ESD.", ["Sentuh bahagian logam casing untuk nyahcas statik.", "Pakai anti-static wrist strap.", "Pegang komponen pada bahagian tepi PCB."]],
+          ["Skru kecil mudah hilang", "tray", "Gunakan screw tray untuk asing dan simpan skru.", ["Labelkan skru mengikut lokasi.", "Masukkan skru ke screw tray.", "Semak bilangan skru sebelum tutup casing."]],
+          ["CPU perlu cooler", "paste", "Letak thermal paste sederhana antara CPU dan cooler.", ["Bersihkan permukaan CPU jika perlu.", "Letak thermal paste sebesar kacang kecil.", "Pasang cooler secara rata dan kemas."]],
+          ["Kabel menghalang airflow", "tie", "Gunakan cable tie atau velcro untuk kemas kabel.", ["Susun kabel ikut laluan casing.", "Ikat kabel tanpa terlalu ketat.", "Pastikan kipas dan airflow tidak terhalang."]],
+          ["Habuk pada casing/fan", "brush", "Gunakan berus lembut atau blower dengan berhati-hati.", ["Pegang fan supaya tidak berpusing laju.", "Bersihkan habuk dengan berus lembut.", "Elakkan tekanan angin terlalu kuat pada komponen kecil."]]
+        ]
+      : [
+          ["Open casing screws", "screwdriver", "Use the correct Phillips screwdriver so the screw head is not damaged.", ["Shut down the computer and unplug the power cable.", "Choose the matching screwdriver size.", "Loosen the screws and store them in a tray."]],
+          ["Handle RAM / motherboard", "esd", "Use an anti-static wrist strap to reduce ESD risk.", ["Touch the metal casing to discharge static.", "Wear an anti-static wrist strap.", "Hold the component by the PCB edges."]],
+          ["Small screws can be lost", "tray", "Use a screw tray to separate and store screws.", ["Label screws by location.", "Place screws in a screw tray.", "Check the screw count before closing the casing."]],
+          ["CPU needs cooler", "paste", "Apply moderate thermal paste between CPU and cooler.", ["Clean the CPU surface if needed.", "Apply a small pea-sized amount of thermal paste.", "Install the cooler evenly and firmly."]],
+          ["Cables block airflow", "tie", "Use cable ties or velcro to organise cables.", ["Route cables through the casing path.", "Tie cables without over-tightening.", "Make sure fans and airflow are not blocked."]],
+          ["Dust on casing/fan", "brush", "Use a soft brush or blower carefully.", ["Hold the fan so it does not spin too fast.", "Clean dust with a soft brush.", "Avoid strong air pressure on small components."]]
+        ];
+    const tools = bm
+      ? [
+          ["screwdriver", "Pemutar skru"],
+          ["esd", "Anti-static strap"],
+          ["tray", "Screw tray"],
+          ["paste", "Thermal paste"],
+          ["tie", "Cable tie"],
+          ["brush", "Berus lembut"]
+        ]
+      : [
+          ["screwdriver", "Screwdriver"],
+          ["esd", "Anti-static strap"],
+          ["tray", "Screw tray"],
+          ["paste", "Thermal paste"],
+          ["tie", "Cable tie"],
+          ["brush", "Soft brush"]
+        ];
+
+    return `
+      <div class="kp04-main-sim">
+        <div class="sim-badge">${bm ? "SIMULASI INTERAKTIF KP04 - PILIH SITUASI DAN TOOL" : "KP04 INTERACTIVE SIMULATION - SELECT SITUATION AND TOOL"}</div>
+        <div class="sim-instruction">
+          ${bm ? "Latihan ini melatih pelajar memilih peralatan pemasangan perkakasan yang betul mengikut situasi kerja sebenar." : "This drill trains students to select the correct hardware installation tool based on a real work situation."}
+        </div>
+        <div class="kp04-workbench">
+          <div class="kp04-sim-column">
+            <h3>${bm ? "1. Pilih situasi kerja" : "1. Choose a work situation"}</h3>
+            <div class="situation-list">
+              ${situations.map(([title, answer, info, steps], index) => `
+                <button type="button" class="situation-chip" data-kp04-main-situation="${title}" data-main-answer="${answer}" data-main-info="${info}" data-main-steps="${steps.join("||")}" onclick="selectKp04Situation(this)" style="--delay:${index}">
+                  <span>${title}</span>
+                  <small>${bm ? "Klik untuk mula latihan" : "Click to start drill"}</small>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+          <div class="kp04-sim-column">
+            <h3>${bm ? "2. Pilih tool yang sesuai" : "2. Choose the suitable tool"}</h3>
+            <div class="tool-choice-bank">
+              ${tools.map(([value, label]) => `<button type="button" class="btn" data-kp04-main-tool="${value}" onclick="checkKp04Tool(this)">${label}</button>`).join("")}
+            </div>
+          </div>
+          <div class="kp04-feedback-panel">
+            <h3>${bm ? "3. Keputusan latihan" : "3. Drill result"}</h3>
+            <div id="kp04MainResult" class="hotspot-result">
+              ${bm ? "Belum mula. Pilih satu situasi kerja dahulu." : "Not started. Choose one work situation first."}
+            </div>
+            <div id="kp04ProcedureCard" class="procedure-card muted">
+              ${bm ? "Langkah penggunaan selamat akan dipaparkan selepas jawapan betul." : "Safe-use steps will appear after a correct answer."}
+            </div>
+            <div id="kp04MainScore" class="score-pill">${bm ? "Skor latihan: 0/0" : "Drill score: 0/0"}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   if (mission.id === 3) {
     const bm = state.lang === "bm";
     const components = bm
@@ -1423,6 +1626,17 @@ function renderKp01Premium() {
 }
 
 function bindKp01Game() {
+  activeKp01TicketItem = null;
+  kp01MainStats = { attempts: 0, correct: 0 };
+
+  document.querySelectorAll("[data-kp01-ticket-item]").forEach((button) => {
+    button.onclick = () => selectKp01TicketItem(button);
+  });
+
+  document.querySelectorAll("[data-kp01-category]").forEach((button) => {
+    button.onclick = () => checkKp01TicketCategory(button);
+  });
+
   document.querySelectorAll("[data-game-answer]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = document.querySelector(`[data-game-card="${button.dataset.card}"]`);
@@ -1437,6 +1651,81 @@ function bindKp01Game() {
       result.innerHTML = `<div class="${correct ? "success-note" : "error"}">${correct ? gameText.dataset.done : gameText.dataset.wrong}</div>`;
     });
   });
+}
+
+let activeKp01TicketItem = null;
+let kp01MainStats = { attempts: 0, correct: 0 };
+
+function selectKp01TicketItem(button) {
+  activeKp01TicketItem = {
+    title: button.dataset.kp01TicketItem,
+    answer: button.dataset.kp01Answer,
+    info: button.dataset.kp01Info
+  };
+
+  document.querySelectorAll("[data-kp01-ticket-item]").forEach((item) => item.classList.remove("active"));
+  document.querySelectorAll("[data-kp01-category]").forEach((item) => item.classList.remove("selected", "correct", "incorrect"));
+  button.classList.add("active");
+
+  const result = document.getElementById("kp01MainResult");
+  const checklist = document.getElementById("kp01MainChecklist");
+  if (result) {
+    result.classList.remove("correct", "incorrect");
+    result.innerHTML = `
+      <strong>${activeKp01TicketItem.title}</strong>
+      <span>${state.lang === "bm" ? "Pilih kategori maklumat yang betul." : "Choose the correct information category."}</span>
+    `;
+  }
+  if (checklist) {
+    checklist.classList.add("muted");
+    checklist.textContent = state.lang === "bm"
+      ? "Kategori yang betul akan membantu bina checklist KP02."
+      : "The correct category helps build the KP02 checklist.";
+  }
+  return false;
+}
+
+function checkKp01TicketCategory(button) {
+  const result = document.getElementById("kp01MainResult");
+  const checklist = document.getElementById("kp01MainChecklist");
+  const score = document.getElementById("kp01MainScore");
+
+  document.querySelectorAll("[data-kp01-category]").forEach((item) => item.classList.remove("selected", "correct", "incorrect"));
+  button.classList.add("selected");
+
+  if (!activeKp01TicketItem) {
+    if (result) {
+      result.classList.remove("correct", "incorrect");
+      result.innerHTML = `<strong>${state.lang === "bm" ? "Pilih maklumat dahulu" : "Choose an item first"}</strong><span>${state.lang === "bm" ? "Klik satu maklumat daripada tiket kerja." : "Click one item from the work ticket."}</span>`;
+    }
+    return false;
+  }
+
+  const correct = button.dataset.kp01Category === activeKp01TicketItem.answer;
+  kp01MainStats.attempts += 1;
+  if (correct) kp01MainStats.correct += 1;
+  button.classList.toggle("correct", correct);
+  button.classList.toggle("incorrect", !correct);
+  if (result) {
+    result.classList.toggle("correct", correct);
+    result.classList.toggle("incorrect", !correct);
+    result.innerHTML = `
+      <strong>${correct ? (state.lang === "bm" ? "Betul" : "Correct") : (state.lang === "bm" ? "Belum tepat" : "Not yet")}: ${activeKp01TicketItem.title}</strong>
+      <span>${correct ? activeKp01TicketItem.info : (state.lang === "bm" ? "Cuba kategori lain. Baca semula maksud maklumat tiket." : "Try another category. Read the ticket item meaning again.")}</span>
+    `;
+  }
+  if (checklist) {
+    checklist.classList.toggle("muted", !correct);
+    checklist.innerHTML = correct
+      ? `<strong>${state.lang === "bm" ? "Checklist KP02" : "KP02 Checklist"}</strong><span>${state.lang === "bm" ? "Masukkan item ini dalam senarai semakan sebelum kerja pemasangan." : "Add this item to the pre-installation checklist."}</span>`
+      : (state.lang === "bm" ? "Belum boleh dimasukkan ke checklist. Padankan kategori dahulu." : "Not ready for the checklist. Match the category first.");
+  }
+  if (score) {
+    score.textContent = state.lang === "bm"
+      ? `Skor latihan: ${kp01MainStats.correct}/${kp01MainStats.attempts}`
+      : `Drill score: ${kp01MainStats.correct}/${kp01MainStats.attempts}`;
+  }
+  return false;
 }
 
 function renderKp02Premium() {
@@ -1695,6 +1984,17 @@ function renderKp02Premium() {
 }
 
 function bindKp02Game() {
+  activeKp02WorkbenchItem = null;
+  kp02MainStats = { attempts: 0, correct: 0 };
+
+  document.querySelectorAll("[data-kp02-work-item]").forEach((button) => {
+    button.onclick = () => selectKp02WorkbenchItem(button);
+  });
+
+  document.querySelectorAll("[data-kp02-tray]").forEach((button) => {
+    button.onclick = () => checkKp02WorkbenchTray(button);
+  });
+
   document.querySelectorAll("[data-kp02-answer]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = document.querySelector(`[data-kp02-card="${button.dataset.card}"]`);
@@ -1709,6 +2009,81 @@ function bindKp02Game() {
       result.innerHTML = `<div class="${correct ? "success-note" : "error"}">${correct ? gameText.dataset.done : gameText.dataset.wrong}</div>`;
     });
   });
+}
+
+let activeKp02WorkbenchItem = null;
+let kp02MainStats = { attempts: 0, correct: 0 };
+
+function selectKp02WorkbenchItem(button) {
+  activeKp02WorkbenchItem = {
+    title: button.dataset.kp02WorkItem,
+    answer: button.dataset.kp02WorkAnswer,
+    info: button.dataset.kp02WorkInfo
+  };
+
+  document.querySelectorAll("[data-kp02-work-item]").forEach((item) => item.classList.remove("active"));
+  document.querySelectorAll("[data-kp02-tray]").forEach((item) => item.classList.remove("selected", "correct", "incorrect"));
+  button.classList.add("active");
+
+  const result = document.getElementById("kp02MainResult");
+  const note = document.getElementById("kp02WorkbenchNote");
+  if (result) {
+    result.classList.remove("correct", "incorrect");
+    result.innerHTML = `
+      <strong>${activeKp02WorkbenchItem.title}</strong>
+      <span>${state.lang === "bm" ? "Pilih tray kategori yang sesuai." : "Choose the suitable category tray."}</span>
+    `;
+  }
+  if (note) {
+    note.classList.add("muted");
+    note.textContent = state.lang === "bm"
+      ? "Padankan item dengan kategori sebelum kerja pemasangan dimulakan."
+      : "Match the item with its category before installation work begins.";
+  }
+  return false;
+}
+
+function checkKp02WorkbenchTray(button) {
+  const result = document.getElementById("kp02MainResult");
+  const note = document.getElementById("kp02WorkbenchNote");
+  const score = document.getElementById("kp02MainScore");
+
+  document.querySelectorAll("[data-kp02-tray]").forEach((item) => item.classList.remove("selected", "correct", "incorrect"));
+  button.classList.add("selected");
+
+  if (!activeKp02WorkbenchItem) {
+    if (result) {
+      result.classList.remove("correct", "incorrect");
+      result.innerHTML = `<strong>${state.lang === "bm" ? "Pilih item dahulu" : "Choose an item first"}</strong><span>${state.lang === "bm" ? "Klik satu item pada workbench." : "Click one item on the workbench."}</span>`;
+    }
+    return false;
+  }
+
+  const correct = button.dataset.kp02Tray === activeKp02WorkbenchItem.answer;
+  kp02MainStats.attempts += 1;
+  if (correct) kp02MainStats.correct += 1;
+  button.classList.toggle("correct", correct);
+  button.classList.toggle("incorrect", !correct);
+  if (result) {
+    result.classList.toggle("correct", correct);
+    result.classList.toggle("incorrect", !correct);
+    result.innerHTML = `
+      <strong>${correct ? (state.lang === "bm" ? "Betul" : "Correct") : (state.lang === "bm" ? "Belum tepat" : "Not yet")}: ${activeKp02WorkbenchItem.title}</strong>
+      <span>${correct ? activeKp02WorkbenchItem.info : (state.lang === "bm" ? "Cuba tray lain. Bezakan antara tools, hardware, software dan safety." : "Try another tray. Separate tools, hardware, software and safety.")}</span>
+    `;
+  }
+  if (note) {
+    note.classList.toggle("muted", !correct);
+    note.innerHTML = correct
+      ? `<strong>${state.lang === "bm" ? "Status workbench" : "Workbench status"}</strong><span>${state.lang === "bm" ? "Item telah diasingkan dengan betul dan boleh masuk checklist kerja." : "The item has been sorted correctly and can enter the work checklist."}</span>`
+      : (state.lang === "bm" ? "Item belum masuk tray yang betul." : "The item is not in the correct tray yet.");
+  }
+  if (score) {
+    score.textContent = state.lang === "bm"
+      ? `Skor latihan: ${kp02MainStats.correct}/${kp02MainStats.attempts}`
+      : `Drill score: ${kp02MainStats.correct}/${kp02MainStats.attempts}`;
+  }
+  return false;
 }
 
 function renderKp03Premium() {
@@ -2179,7 +2554,106 @@ function renderKp04Premium() {
   `;
 }
 
+let activeKp04Situation = null;
+let kp04MainStats = { attempts: 0, correct: 0 };
+
+function selectKp04Situation(button) {
+  activeKp04Situation = {
+    title: button.dataset.kp04MainSituation,
+    answer: button.dataset.mainAnswer,
+    info: button.dataset.mainInfo,
+    steps: (button.dataset.mainSteps || "").split("||").filter(Boolean)
+  };
+
+  document.querySelectorAll("[data-kp04-main-situation]").forEach((item) => item.classList.remove("active"));
+  document.querySelectorAll("[data-kp04-main-tool]").forEach((item) => {
+    item.classList.remove("selected", "correct", "incorrect");
+  });
+  button.classList.add("active");
+
+  const result = document.getElementById("kp04MainResult");
+  const procedure = document.getElementById("kp04ProcedureCard");
+  if (!result) return false;
+  result.classList.remove("correct", "incorrect");
+  result.innerHTML = `
+    <strong>${activeKp04Situation.title}</strong>
+    <span>${state.lang === "bm" ? "Sekarang pilih tool yang sesuai di bawah." : "Now choose the suitable tool below."}</span>
+  `;
+  if (procedure) {
+    procedure.classList.add("muted");
+    procedure.innerHTML = state.lang === "bm"
+      ? "Pilih tool dahulu. Langkah penggunaan selamat akan keluar selepas jawapan betul."
+      : "Choose a tool first. Safe-use steps will appear after a correct answer.";
+  }
+  return false;
+}
+
+function checkKp04Tool(button) {
+  const result = document.getElementById("kp04MainResult");
+  const procedure = document.getElementById("kp04ProcedureCard");
+  const score = document.getElementById("kp04MainScore");
+  if (!result) return false;
+
+  document.querySelectorAll("[data-kp04-main-tool]").forEach((item) => item.classList.remove("selected", "correct", "incorrect"));
+  button.classList.add("selected");
+
+  if (!activeKp04Situation) {
+    result.classList.remove("correct", "incorrect");
+    if (procedure) {
+      procedure.classList.add("muted");
+      procedure.innerHTML = state.lang === "bm"
+        ? "Arahan: pilih situasi kerja dahulu."
+        : "Instruction: choose a work situation first.";
+    }
+    result.innerHTML = `
+      <strong>${state.lang === "bm" ? "Pilih situasi dahulu" : "Select a situation first"}</strong>
+      <span>${state.lang === "bm" ? "Klik salah satu situasi kerja di bahagian atas, kemudian pilih tool." : "Click one work situation above, then choose a tool."}</span>
+    `;
+    return false;
+  }
+
+  const correct = button.dataset.kp04MainTool === activeKp04Situation.answer;
+  kp04MainStats.attempts += 1;
+  if (correct) kp04MainStats.correct += 1;
+  button.classList.toggle("correct", correct);
+  button.classList.toggle("incorrect", !correct);
+  result.classList.toggle("correct", correct);
+  result.classList.toggle("incorrect", !correct);
+  result.innerHTML = `
+    <strong>${correct ? (state.lang === "bm" ? "Betul" : "Correct") : (state.lang === "bm" ? "Belum tepat" : "Not yet")}: ${activeKp04Situation.title}</strong>
+    <span>${correct ? activeKp04Situation.info : (state.lang === "bm" ? "Cuba pilih tool lain. Semak fungsi tool sebelum pemasangan." : "Try another tool. Check the tool function before installation.")}</span>
+  `;
+  if (procedure) {
+    procedure.classList.toggle("muted", !correct);
+    procedure.innerHTML = correct
+      ? `
+        <strong>${state.lang === "bm" ? "Langkah penggunaan selamat" : "Safe-use steps"}</strong>
+        <ol>${activeKp04Situation.steps.map((step) => `<li>${step}</li>`).join("")}</ol>
+      `
+      : (state.lang === "bm"
+        ? "Belum tepat. Pilih tool lain sehingga padanan situasi dan peralatan betul."
+        : "Not yet. Choose another tool until the work situation and equipment match.");
+  }
+  if (score) {
+    score.textContent = state.lang === "bm"
+      ? `Skor latihan: ${kp04MainStats.correct}/${kp04MainStats.attempts}`
+      : `Drill score: ${kp04MainStats.correct}/${kp04MainStats.attempts}`;
+  }
+  return false;
+}
+
 function bindKp04Game() {
+  activeKp04Situation = null;
+  kp04MainStats = { attempts: 0, correct: 0 };
+
+  document.querySelectorAll("[data-kp04-main-situation]").forEach((button) => {
+    button.onclick = () => selectKp04Situation(button);
+  });
+
+  document.querySelectorAll("[data-kp04-main-tool]").forEach((button) => {
+    button.onclick = () => checkKp04Tool(button);
+  });
+
   document.querySelectorAll("[data-kp04-answer]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = document.querySelector(`[data-kp04-card="${button.dataset.card}"]`);
