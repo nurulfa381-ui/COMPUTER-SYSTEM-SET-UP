@@ -23,6 +23,8 @@ ABM interaktif untuk unit **IT-020-3:2013-C01 COMPUTER SYSTEM SET-UP**.
 - Untuk logo sebenar, tambah fail `assets/logo-mentari.png` di root repo. Nama folder/fail mesti tepat kerana GitHub Pages sensitif huruf besar/kecil.
 - KP02 dikemaskini dengan nota lengkap, animasi workbench, simulasi checklist, aktiviti pelajar, mini game kategori tools/hardware/software/safety dan KT02 10 soalan.
 - Jawapan betul KT02 disusun pada kedudukan berbeza.
+- KP02 Upgrade 2 menambah inventori lengkap tools/hardware/software/safety, tools diagnostik, senario kit kerja, decision matrix item dan aktiviti pelajar tambahan.
+- KP03 dikemaskini untuk kandungan KP sahaja: nota lengkap perkakasan/peralatan komputer, simulasi motherboard, peta port/kabel, peta komponen, aktiviti pelajar dan mini game fungsi komponen.
 
 ## Fail
 

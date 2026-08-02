@@ -147,7 +147,12 @@ const missions = [
       "Keselamatan kerja wajib dipatuhi: matikan bekalan kuasa, elakkan ESD, jangan pegang pin/contacts komponen, dan susun skru supaya tidak hilang.",
       "Lesen perisian, versi OS dan keperluan organisasi perlu disahkan. Jangan pasang software yang tiada arahan atau tiada lesen sah.",
       "Meja kerja perlu kemas, terang dan bebas cecair. Komponen sensitif seperti CPU, RAM dan motherboard perlu diletakkan di kawasan selamat.",
-      "Semua item mesti ditanda dalam checklist sebelum pemasangan. Jika ada item tidak cukup, juruteknik perlu maklumkan penyelia sebelum meneruskan kerja."
+      "Semua item mesti ditanda dalam checklist sebelum pemasangan. Jika ada item tidak cukup, juruteknik perlu maklumkan penyelia sebelum meneruskan kerja.",
+      "Tools diagnostik seperti cable tester, multimeter dan POST card boleh digunakan jika kerja melibatkan semakan sambungan, kuasa atau kegagalan boot.",
+      "Komponen perlu disimpan dalam packaging anti-static sehingga masa pemasangan untuk mengurangkan risiko kerosakan akibat elektrik statik atau hentakan.",
+      "Penyediaan hardware juga perlu mengambil kira airflow casing, jumlah fan, ruang GPU, jenis form factor motherboard dan panjang kabel.",
+      "Penyediaan software perlu termasuk fail offline driver jika rangkaian belum tersedia selepas OS dipasang.",
+      "Sebelum kerja bermula, juruteknik perlu membuat keputusan: item boleh terus digunakan, item perlu diganti, item perlu disahkan atau item tidak berkaitan dengan job request."
     ],
     notesEn: [
       "KP02 preparation starts after KP01 analysis. The technician must refer to the job request and checklist so tools, hardware and software match the actual work.",
@@ -158,7 +163,12 @@ const missions = [
       "Work safety must be followed: switch off power, prevent ESD, avoid touching component pins/contacts, and organise screws so they are not lost.",
       "Software licences, OS version and organisation requirements must be confirmed. Do not install software that is not requested or not properly licensed.",
       "The workbench must be tidy, bright and free from liquids. Sensitive components such as CPU, RAM and motherboard must be placed in a safe area.",
-      "Every item must be ticked in the checklist before installation. If an item is missing, the technician must inform the supervisor before continuing."
+      "Every item must be ticked in the checklist before installation. If an item is missing, the technician must inform the supervisor before continuing.",
+      "Diagnostic tools such as cable tester, multimeter and POST card can be used when the work involves checking connection, power or boot failure.",
+      "Components should remain in anti-static packaging until installation time to reduce damage from static electricity or physical impact.",
+      "Hardware preparation should also consider casing airflow, fan quantity, GPU clearance, motherboard form factor and cable length.",
+      "Software preparation should include offline driver files if network access may not be available after OS installation.",
+      "Before work starts, the technician must decide whether each item can be used, must be replaced, needs confirmation or is not related to the job request."
     ],
     activityBm: "Sediakan kit kerja lengkap berdasarkan tiket KP01: asingkan tools, hardware, software, keselamatan dan item yang perlu disahkan.",
     activityEn: "Prepare a complete work kit based on the KP01 ticket: separate tools, hardware, software, safety items and items requiring confirmation."
@@ -168,22 +178,34 @@ const missions = [
     code: "KP03",
     titleBm: "Perkakasan dan Peralatan Komputer",
     titleEn: "Computer Hardware and Equipment",
-    scopeBm: "Kenal pasti komponen komputer, kabel dan fungsi asas setiap perkakasan.",
-    scopeEn: "Identify computer components, cables and the basic function of each part.",
+    scopeBm: "Kenal pasti komponen komputer, kabel, port dan fungsi perkakasan sebelum kerja pemasangan.",
+    scopeEn: "Identify computer components, cables, ports and hardware functions before installation work.",
     notesBm: [
-      "Motherboard menghubungkan CPU, RAM, storage, expansion card dan port I/O.",
-      "CPU memproses arahan, RAM menyimpan data sementara, storage menyimpan data kekal.",
-      "PSU membekalkan kuasa yang stabil kepada semua komponen.",
-      "Kabel SATA, power cable, HDMI, DisplayPort dan USB perlu dipilih mengikut fungsi."
+      "Perkakasan komputer ialah semua komponen fizikal yang membentuk sistem komputer, termasuk unit sistem, monitor, keyboard, mouse, printer, kabel dan peralatan sokongan.",
+      "Motherboard ialah papan utama yang menghubungkan CPU, RAM, storage, expansion card, port I/O dan sambungan kuasa. Semua komponen utama perlu serasi dengan motherboard.",
+      "CPU berfungsi memproses arahan komputer. Semakan penting termasuk jenis socket, generasi processor, bilangan core/thread dan keperluan cooler.",
+      "RAM menyimpan data sementara ketika komputer sedang beroperasi. Juruteknik perlu semak jenis RAM seperti DDR3, DDR4 atau DDR5, kapasiti dan slot yang sesuai.",
+      "Storage menyimpan sistem operasi, aplikasi dan data pengguna. HDD sesuai untuk kapasiti besar, SSD lebih laju, manakala NVMe M.2 memberi prestasi lebih tinggi jika motherboard menyokongnya.",
+      "PSU membekalkan kuasa kepada motherboard, CPU, storage dan GPU. Kapasiti watt, connector 24-pin, CPU 4/8-pin dan PCIe perlu disemak sebelum pemasangan.",
+      "GPU atau graphics card memproses paparan grafik. Ia penting untuk kerja grafik, video, 3D dan paparan beresolusi tinggi.",
+      "Port dan kabel perlu dikenal pasti mengikut fungsi. Contohnya HDMI/DisplayPort untuk paparan, USB untuk periferal, RJ45 untuk rangkaian, audio jack untuk bunyi dan SATA untuk storage.",
+      "Periferal seperti monitor, keyboard, mouse, printer, scanner dan speaker perlu dipilih mengikut keperluan pengguna dalam job request.",
+      "Juruteknik perlu membezakan komponen dalaman, komponen luaran, kabel data, kabel kuasa dan peralatan rangkaian supaya set-up lebih tepat dan selamat."
     ],
     notesEn: [
-      "The motherboard connects CPU, RAM, storage, expansion card and I/O ports.",
-      "CPU processes instructions, RAM stores temporary data, storage keeps permanent data.",
-      "The PSU supplies stable power to all components.",
-      "SATA, power, HDMI, DisplayPort and USB cables must be selected by function."
+      "Computer hardware refers to all physical components that form a computer system, including the system unit, monitor, keyboard, mouse, printer, cables and support equipment.",
+      "The motherboard is the main board that connects CPU, RAM, storage, expansion card, I/O ports and power connections. Main components must be compatible with the motherboard.",
+      "The CPU processes computer instructions. Important checks include socket type, processor generation, core/thread count and cooling requirement.",
+      "RAM stores temporary data while the computer is operating. The technician must check RAM type such as DDR3, DDR4 or DDR5, capacity and suitable slots.",
+      "Storage keeps the operating system, applications and user data. HDD is suitable for large capacity, SSD is faster, while NVMe M.2 gives higher performance if supported by the motherboard.",
+      "The PSU supplies power to the motherboard, CPU, storage and GPU. Wattage capacity, 24-pin connector, CPU 4/8-pin and PCIe connectors must be checked before installation.",
+      "The GPU or graphics card processes display graphics. It is important for graphics, video, 3D and high-resolution display work.",
+      "Ports and cables must be identified by function. For example, HDMI/DisplayPort for display, USB for peripherals, RJ45 for networking, audio jack for sound and SATA for storage.",
+      "Peripherals such as monitor, keyboard, mouse, printer, scanner and speaker must be selected according to user needs in the job request.",
+      "The technician must distinguish internal components, external components, data cables, power cables and network equipment so setup is more accurate and safe."
     ],
-    activityBm: "Simulasi meja kerja: kenal pasti CPU, RAM, SSD, PSU dan kabel yang sesuai.",
-    activityEn: "Workbench simulation: identify CPU, RAM, SSD, PSU and suitable cables."
+    activityBm: "Kenal pasti komponen pada simulasi motherboard, padankan kabel dengan port, dan tentukan fungsi setiap perkakasan.",
+    activityEn: "Identify components on a motherboard simulation, match cables to ports, and determine each hardware function."
   },
   {
     id: 4,
@@ -1128,12 +1150,14 @@ function renderMission(id) {
       </div>
       ${mission.id === 1 ? renderKp01Premium() : ""}
       ${mission.id === 2 ? renderKp02Premium() : ""}
+      ${mission.id === 3 ? renderKp03Premium() : ""}
       <div id="quizMount"></div>
     </section>
   `);
 
   if (mission.id === 1) bindKp01Game();
   if (mission.id === 2) bindKp02Game();
+  if (mission.id === 3) bindKp03Game();
 }
 
 function renderSimulation(mission) {
@@ -1386,6 +1410,54 @@ function renderKp02Premium() {
         ["Confirmation", "Software licence, OS version, component compatibility, supervisor approval"]
       ];
 
+  const inventory = bm
+    ? [
+        ["Tools tangan", "Pemutar skru Phillips/flat, tweezer, bekas skru, cable tie, flashlight"],
+        ["Tools keselamatan", "Anti-static wrist strap, anti-static mat, glove sesuai, label keselamatan"],
+        ["Tools pembersihan", "Blower, berus lembut, kain microfiber, isopropyl alcohol jika sesuai"],
+        ["Tools diagnostik", "Cable tester, multimeter, POST card, spare LAN cable, spare power cable"],
+        ["Hardware utama", "Motherboard, CPU, RAM, SSD/HDD/NVMe, PSU, casing, GPU jika diperlukan"],
+        ["Hardware sokongan", "CPU cooler, casing fan, SATA cable, power cable, screw set, bracket"],
+        ["Software asas", "OS installer, chipset driver, network driver, audio driver, graphic driver"],
+        ["Software pengguna", "Office app, browser, PDF reader, antivirus, compression tool, utility tool"]
+      ]
+    : [
+        ["Hand tools", "Phillips/flat screwdriver, tweezers, screw tray, cable ties, flashlight"],
+        ["Safety tools", "Anti-static wrist strap, anti-static mat, suitable gloves, safety labels"],
+        ["Cleaning tools", "Blower, soft brush, microfiber cloth, isopropyl alcohol when suitable"],
+        ["Diagnostic tools", "Cable tester, multimeter, POST card, spare LAN cable, spare power cable"],
+        ["Main hardware", "Motherboard, CPU, RAM, SSD/HDD/NVMe, PSU, casing, GPU when required"],
+        ["Support hardware", "CPU cooler, casing fan, SATA cable, power cable, screw set, bracket"],
+        ["Basic software", "OS installer, chipset driver, network driver, audio driver, graphic driver"],
+        ["User software", "Office app, browser, PDF reader, antivirus, compression tool, utility tool"]
+      ];
+
+  const scenarios = bm
+    ? [
+        ["Komputer Pejabat", "Utamakan OS, Office, browser, PDF reader, antivirus, printer driver dan rangkaian."],
+        ["Komputer Reka Bentuk Asas", "Utamakan RAM lebih tinggi, SSD/NVMe, GPU sesuai, driver graphic dan ruang storage."],
+        ["Komputer Kaunter", "Utamakan printer/scanner, rangkaian stabil, aplikasi kerja, backup power dan ujian periferal."]
+      ]
+    : [
+        ["Office Computer", "Prioritise OS, Office, browser, PDF reader, antivirus, printer driver and network."],
+        ["Basic Design Computer", "Prioritise higher RAM, SSD/NVMe, suitable GPU, graphic driver and storage space."],
+        ["Counter Computer", "Prioritise printer/scanner, stable network, work application, backup power and peripheral test."]
+      ];
+
+  const decisionItems = bm
+    ? [
+        ["Boleh guna", "Item lengkap, serasi, selamat dan menepati job request."],
+        ["Perlu ganti", "Item rosak, tidak serasi, kapasiti tidak cukup atau tidak sesuai dengan skop kerja."],
+        ["Perlu sahkan", "Lesen, versi OS, spesifikasi tambahan atau kelulusan penyelia belum jelas."],
+        ["Tidak berkaitan", "Item tidak diminta dalam job request dan tidak menyokong kerja set-up."]
+      ]
+    : [
+        ["Ready to use", "Item is complete, compatible, safe and matches the job request."],
+        ["Need replacement", "Item is faulty, incompatible, insufficient or unsuitable for the work scope."],
+        ["Need confirmation", "Licence, OS version, extra specification or supervisor approval is unclear."],
+        ["Not related", "Item is not requested in the job request and does not support the setup work."]
+      ];
+
   const activities = bm
     ? [
         "Aktiviti 1: Pelajar baca tiket KP01 dan bina checklist KP02 sendiri.",
@@ -1393,7 +1465,11 @@ function renderKp02Premium() {
         "Aktiviti 3: Pelajar semak keserasian motherboard, CPU, RAM dan storage berdasarkan senario guru.",
         "Aktiviti 4: Pelajar pilih software wajib untuk komputer pejabat dan jelaskan sebab pilihan.",
         "Aktiviti 5: Pelajar buat pemeriksaan keselamatan sebelum membuka casing.",
-        "Aktiviti 6: Pelajar lakon situasi melapor item tidak cukup kepada penyelia sebelum kerja diteruskan."
+        "Aktiviti 6: Pelajar lakon situasi melapor item tidak cukup kepada penyelia sebelum kerja diteruskan.",
+        "Aktiviti 7: Pelajar pilih kit kerja untuk tiga senario: pejabat, reka bentuk asas dan kaunter.",
+        "Aktiviti 8: Pelajar buat keputusan item: boleh guna, perlu ganti, perlu sahkan atau tidak berkaitan.",
+        "Aktiviti 9: Pelajar semak USB bootable dan senaraikan risiko jika installer/driver tiada.",
+        "Aktiviti 10: Pelajar bentangkan checklist akhir sebelum kerja pemasangan dimulakan."
       ]
     : [
         "Activity 1: Students read the KP01 ticket and create their own KP02 checklist.",
@@ -1401,7 +1477,11 @@ function renderKp02Premium() {
         "Activity 3: Students check motherboard, CPU, RAM and storage compatibility using a teacher scenario.",
         "Activity 4: Students choose required software for an office PC and explain the reason.",
         "Activity 5: Students perform safety checks before opening the casing.",
-        "Activity 6: Students role-play reporting missing items to the supervisor before continuing work."
+        "Activity 6: Students role-play reporting missing items to the supervisor before continuing work.",
+        "Activity 7: Students choose a work kit for three scenarios: office, basic design and counter PC.",
+        "Activity 8: Students decide item status: ready to use, need replacement, need confirmation or not related.",
+        "Activity 9: Students test bootable USB and list risks if installer/driver is missing.",
+        "Activity 10: Students present the final checklist before installation begins."
       ];
 
   const gameItems = bm
@@ -1466,6 +1546,27 @@ function renderKp02Premium() {
         </div>
       </div>
 
+      <div class="panel lesson-box wide">
+        <h2>${bm ? "Inventori Lengkap KP02" : "Complete KP02 Inventory"}</h2>
+        <div class="inventory-grid">
+          ${inventory.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${bm ? "Simulasi Senario Kit Kerja" : "Work Kit Scenario Simulation"}</h2>
+        <div class="scenario-stack">
+          ${scenarios.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${bm ? "Keputusan Sebelum Pemasangan" : "Pre-Installation Decision"}</h2>
+        <div class="decision-grid">
+          ${decisionItems.map(([title, detail]) => `<div><strong>${title}</strong><span>${detail}</span></div>`).join("")}
+        </div>
+      </div>
+
       <div class="panel lesson-box">
         <h2>${labels.activities}</h2>
         <ol class="activity-list">${activities.map((item) => `<li>${item}</li>`).join("")}</ol>
@@ -1500,6 +1601,216 @@ function bindKp02Game() {
       const correct = button.dataset.kp02Answer === button.dataset.correct;
 
       card.querySelectorAll("[data-kp02-answer]").forEach((item) => item.classList.remove("selected"));
+      button.classList.add("selected");
+      card.classList.toggle("correct", correct);
+      card.classList.toggle("incorrect", !correct);
+      result.innerHTML = `<div class="${correct ? "success-note" : "error"}">${correct ? gameText.dataset.done : gameText.dataset.wrong}</div>`;
+    });
+  });
+}
+
+function renderKp03Premium() {
+  const bm = state.lang === "bm";
+  const labels = bm
+    ? {
+        board: "Simulasi Motherboard: Kenal Pasti Slot dan Komponen",
+        ports: "Padanan Port, Kabel dan Fungsi",
+        components: "Peta Komponen Dalaman dan Luaran",
+        activities: "Aktiviti Pelajar",
+        game: "Mini Game: Padankan Komponen Dengan Fungsi",
+        gameHelp: "Klik fungsi yang betul untuk setiap komponen.",
+        done: "Betul. Fungsi komponen dikenal pasti dengan tepat.",
+        wrong: "Belum tepat. Semak semula fungsi komponen tersebut."
+      }
+    : {
+        board: "Motherboard Simulation: Identify Slots and Components",
+        ports: "Port, Cable and Function Matching",
+        components: "Internal and External Component Map",
+        activities: "Student Activities",
+        game: "Mini Game: Match Component With Function",
+        gameHelp: "Click the correct function for each component.",
+        done: "Correct. The component function is identified accurately.",
+        wrong: "Not yet. Check the component function again."
+      };
+
+  const boardLabels = bm
+    ? [
+        ["CPU Socket", "Tempat CPU dipasang"],
+        ["RAM Slot", "Tempat modul RAM"],
+        ["M.2 Slot", "Tempat NVMe SSD"],
+        ["PCIe Slot", "Tempat GPU/expansion card"],
+        ["SATA Port", "Sambungan storage SATA"],
+        ["24-pin Power", "Kuasa utama motherboard"]
+      ]
+    : [
+        ["CPU Socket", "CPU installation area"],
+        ["RAM Slot", "RAM module slot"],
+        ["M.2 Slot", "NVMe SSD slot"],
+        ["PCIe Slot", "GPU/expansion card slot"],
+        ["SATA Port", "SATA storage connection"],
+        ["24-pin Power", "Main motherboard power"]
+      ];
+
+  const portRows = bm
+    ? [
+        ["HDMI / DisplayPort", "Kabel paparan", "Sambung monitor"],
+        ["USB", "Kabel/peranti USB", "Keyboard, mouse, printer, pendrive"],
+        ["RJ45", "Kabel LAN", "Sambungan rangkaian"],
+        ["Audio Jack", "Kabel audio", "Speaker atau headset"],
+        ["SATA", "Kabel data SATA", "HDD/SSD SATA"]
+      ]
+    : [
+        ["HDMI / DisplayPort", "Display cable", "Connect monitor"],
+        ["USB", "USB cable/device", "Keyboard, mouse, printer, flash drive"],
+        ["RJ45", "LAN cable", "Network connection"],
+        ["Audio Jack", "Audio cable", "Speaker or headset"],
+        ["SATA", "SATA data cable", "SATA HDD/SSD"]
+      ];
+
+  const components = bm
+    ? [
+        ["Komponen Dalaman", "Motherboard, CPU, RAM, SSD/HDD, PSU, GPU, cooling fan"],
+        ["Komponen Luaran", "Monitor, keyboard, mouse, printer, scanner, speaker"],
+        ["Kabel Data", "SATA, USB, HDMI, DisplayPort, RJ45"],
+        ["Kabel Kuasa", "AC power, 24-pin ATX, CPU 8-pin, SATA power, PCIe power"]
+      ]
+    : [
+        ["Internal Components", "Motherboard, CPU, RAM, SSD/HDD, PSU, GPU, cooling fan"],
+        ["External Components", "Monitor, keyboard, mouse, printer, scanner, speaker"],
+        ["Data Cables", "SATA, USB, HDMI, DisplayPort, RJ45"],
+        ["Power Cables", "AC power, 24-pin ATX, CPU 8-pin, SATA power, PCIe power"]
+      ];
+
+  const activities = bm
+    ? [
+        "Aktiviti 1: Pelajar labelkan CPU socket, RAM slot, PCIe slot, M.2 slot, SATA port dan power connector pada gambar motherboard.",
+        "Aktiviti 2: Pelajar asingkan komponen kepada dalaman, luaran, kabel data dan kabel kuasa.",
+        "Aktiviti 3: Pelajar padankan kabel HDMI, USB, RJ45, SATA dan audio dengan fungsi yang betul.",
+        "Aktiviti 4: Pelajar pilih komponen sesuai untuk komputer pejabat, komputer reka bentuk asas dan komputer kaunter.",
+        "Aktiviti 5: Pelajar terangkan kesan jika PSU watt tidak mencukupi atau RAM tidak serasi.",
+        "Aktiviti 6: Pelajar buat pemeriksaan fizikal komponen tanpa menyentuh pin/contacts sensitif."
+      ]
+    : [
+        "Activity 1: Students label CPU socket, RAM slot, PCIe slot, M.2 slot, SATA port and power connector on a motherboard image.",
+        "Activity 2: Students sort components into internal, external, data cable and power cable groups.",
+        "Activity 3: Students match HDMI, USB, RJ45, SATA and audio cables with the correct functions.",
+        "Activity 4: Students choose suitable components for an office PC, basic design PC and counter PC.",
+        "Activity 5: Students explain the effect of insufficient PSU wattage or incompatible RAM.",
+        "Activity 6: Students perform physical inspection without touching sensitive pins/contacts."
+      ];
+
+  const gameItems = bm
+    ? [
+        ["CPU", "process"],
+        ["RAM", "temporary"],
+        ["SSD", "permanent"],
+        ["PSU", "power"],
+        ["GPU", "graphics"],
+        ["RJ45", "network"]
+      ]
+    : [
+        ["CPU", "process"],
+        ["RAM", "temporary"],
+        ["SSD", "permanent"],
+        ["PSU", "power"],
+        ["GPU", "graphics"],
+        ["RJ45", "network"]
+      ];
+
+  const functions = bm
+    ? [
+        ["process", "Memproses arahan"],
+        ["temporary", "Menyimpan data sementara"],
+        ["permanent", "Menyimpan data kekal"],
+        ["power", "Membekalkan kuasa"],
+        ["graphics", "Memproses grafik"],
+        ["network", "Sambungan rangkaian"]
+      ]
+    : [
+        ["process", "Processes instructions"],
+        ["temporary", "Stores temporary data"],
+        ["permanent", "Stores permanent data"],
+        ["power", "Supplies power"],
+        ["graphics", "Processes graphics"],
+        ["network", "Network connection"]
+      ];
+
+  return `
+    <div class="kp01-grid">
+      <div class="panel lesson-box wide">
+        <h2>${labels.board}</h2>
+        <div class="motherboard-sim">
+          <div class="mb-shape">
+            <div class="mb-part cpu">CPU</div>
+            <div class="mb-part ram">RAM</div>
+            <div class="mb-part m2">M.2</div>
+            <div class="mb-part pcie">PCIe</div>
+            <div class="mb-part sata">SATA</div>
+            <div class="mb-part power">24-pin</div>
+            <div class="mb-trace t1"></div>
+            <div class="mb-trace t2"></div>
+            <div class="mb-trace t3"></div>
+          </div>
+          <div class="mb-labels">
+            ${boardLabels.map(([title, detail]) => `<div><strong>${title}</strong><span>${detail}</span></div>`).join("")}
+          </div>
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.ports}</h2>
+        <div class="port-map">
+          ${portRows.map(([port, cable, use]) => `
+            <div class="port-row">
+              <strong>${port}</strong>
+              <span>${cable}</span>
+              <small>${use}</small>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.components}</h2>
+        <div class="component-map">
+          ${components.map(([title, detail]) => `<div><strong>${title}</strong><p>${detail}</p></div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.activities}</h2>
+        <ol class="activity-list">${activities.map((item) => `<li>${item}</li>`).join("")}</ol>
+      </div>
+
+      <div class="panel lesson-box">
+        <h2>${labels.game}</h2>
+        <p class="muted">${labels.gameHelp}</p>
+        <div class="game-list">
+          ${gameItems.map(([item, answer], index) => `
+            <div class="game-card" data-kp03-card="${index}">
+              <strong>${item}</strong>
+              <div class="game-options">
+                ${functions.map(([value, label]) => `<button class="btn" data-kp03-answer="${value}" data-correct="${answer}" data-card="${index}">${label}</button>`).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <div id="kp03GameResult" class="result"></div>
+        <template id="kp03GameText" data-done="${labels.done}" data-wrong="${labels.wrong}"></template>
+      </div>
+    </div>
+  `;
+}
+
+function bindKp03Game() {
+  document.querySelectorAll("[data-kp03-answer]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = document.querySelector(`[data-kp03-card="${button.dataset.card}"]`);
+      const result = document.getElementById("kp03GameResult");
+      const gameText = document.getElementById("kp03GameText");
+      const correct = button.dataset.kp03Answer === button.dataset.correct;
+
+      card.querySelectorAll("[data-kp03-answer]").forEach((item) => item.classList.remove("selected"));
       button.classList.add("selected");
       card.classList.toggle("correct", correct);
       card.classList.toggle("incorrect", !correct);
