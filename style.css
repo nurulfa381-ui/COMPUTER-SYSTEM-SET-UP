@@ -344,6 +344,67 @@ select:focus {
   padding: 12px;
 }
 
+.kp03-main-sim {
+  display: grid;
+  gap: 12px;
+}
+
+.sim-instruction {
+  color: #d7e3ff;
+  background: rgba(86, 204, 242, 0.1);
+  border: 1px solid rgba(86, 204, 242, 0.24);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.sim-board-mini {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  background:
+    linear-gradient(135deg, rgba(39, 174, 96, 0.14), rgba(47, 128, 237, 0.12)),
+    #08172c;
+  border: 1px dashed rgba(86, 204, 242, 0.38);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.sim-chip {
+  color: var(--text);
+  background: rgba(86, 204, 242, 0.12);
+  border: 1px solid rgba(86, 204, 242, 0.3);
+  border-radius: 8px;
+  padding: 14px 10px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.sim-chip:hover,
+.sim-chip.active {
+  transform: translateY(-2px);
+  background: rgba(242, 153, 74, 0.2);
+  border-color: rgba(242, 153, 74, 0.55);
+}
+
+.sim-function-bank {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.hotspot-result.correct {
+  border-color: rgba(39, 174, 96, 0.5);
+  background: rgba(39, 174, 96, 0.14);
+}
+
+.hotspot-result.incorrect {
+  border-color: rgba(235, 87, 87, 0.5);
+  background: rgba(235, 87, 87, 0.14);
+}
+
 .quiz {
   display: grid;
   gap: 14px;
@@ -1735,6 +1796,8 @@ select:focus {
   .stats,
   .grid,
   .bench,
+  .sim-board-mini,
+  .sim-function-bank,
   .decision-grid,
   .esd-sim,
   .kit-desk {

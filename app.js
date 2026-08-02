@@ -1177,6 +1177,63 @@ function renderMission(id) {
 }
 
 function renderSimulation(mission) {
+  if (mission.id === 3) {
+    const bm = state.lang === "bm";
+    const components = bm
+      ? [
+          ["CPU", "process", "Memproses arahan komputer."],
+          ["RAM", "temporary", "Menyimpan data sementara semasa komputer beroperasi."],
+          ["SSD", "permanent", "Menyimpan OS, aplikasi dan data secara kekal."],
+          ["PSU", "power", "Membekalkan kuasa stabil kepada komponen."],
+          ["GPU", "graphics", "Memproses paparan grafik."],
+          ["RJ45", "network", "Menyambungkan komputer ke rangkaian."]
+        ]
+      : [
+          ["CPU", "process", "Processes computer instructions."],
+          ["RAM", "temporary", "Stores temporary data while the computer is running."],
+          ["SSD", "permanent", "Stores OS, applications and data permanently."],
+          ["PSU", "power", "Supplies stable power to components."],
+          ["GPU", "graphics", "Processes graphic display."],
+          ["RJ45", "network", "Connects the computer to a network."]
+        ];
+    const functions = bm
+      ? [
+          ["process", "Proses arahan"],
+          ["temporary", "Data sementara"],
+          ["permanent", "Data kekal"],
+          ["power", "Bekal kuasa"],
+          ["graphics", "Paparan grafik"],
+          ["network", "Rangkaian"]
+        ]
+      : [
+          ["process", "Process instructions"],
+          ["temporary", "Temporary data"],
+          ["permanent", "Permanent data"],
+          ["power", "Power supply"],
+          ["graphics", "Graphics display"],
+          ["network", "Network"]
+        ];
+
+    return `
+      <div class="kp03-main-sim">
+        <div class="sim-instruction">
+          ${bm ? "Klik satu komponen, kemudian pilih fungsi yang betul." : "Click a component, then choose the correct function."}
+        </div>
+        <div class="sim-board-mini">
+          ${components.map(([name, answer, info]) => `
+            <button class="sim-chip" data-main-component="${name}" data-main-answer="${answer}" data-main-info="${info}">${name}</button>
+          `).join("")}
+        </div>
+        <div class="sim-function-bank">
+          ${functions.map(([value, label]) => `<button class="btn" data-main-function="${value}">${label}</button>`).join("")}
+        </div>
+        <div id="kp03MainResult" class="hotspot-result">
+          ${bm ? "Belum pilih komponen." : "No component selected yet."}
+        </div>
+      </div>
+    `;
+  }
+
   const parts = state.lang === "bm"
     ? ["Motherboard", "CPU", "RAM", "SSD", "PSU", "Kabel SATA"]
     : ["Motherboard", "CPU", "RAM", "SSD", "PSU", "SATA Cable"];
@@ -1854,6 +1911,44 @@ function renderKp03Premium() {
 }
 
 function bindKp03Game() {
+  let selectedMainComponent = null;
+
+  document.querySelectorAll("[data-main-component]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedMainComponent = {
+        name: button.dataset.mainComponent,
+        answer: button.dataset.mainAnswer,
+        info: button.dataset.mainInfo
+      };
+      document.querySelectorAll("[data-main-component]").forEach((item) => item.classList.remove("active"));
+      document.querySelectorAll("[data-main-function]").forEach((item) => item.classList.remove("selected"));
+      button.classList.add("active");
+      const result = document.getElementById("kp03MainResult");
+      result.innerHTML = `<strong>${selectedMainComponent.name}</strong><span>${state.lang === "bm" ? "Sekarang pilih fungsi yang betul." : "Now choose the correct function."}</span>`;
+    });
+  });
+
+  document.querySelectorAll("[data-main-function]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const result = document.getElementById("kp03MainResult");
+      document.querySelectorAll("[data-main-function]").forEach((item) => item.classList.remove("selected"));
+      button.classList.add("selected");
+
+      if (!selectedMainComponent) {
+        result.innerHTML = `<strong>${state.lang === "bm" ? "Pilih komponen dahulu" : "Select a component first"}</strong><span>${state.lang === "bm" ? "Klik CPU, RAM, SSD, PSU, GPU atau RJ45." : "Click CPU, RAM, SSD, PSU, GPU or RJ45."}</span>`;
+        return;
+      }
+
+      const correct = button.dataset.mainFunction === selectedMainComponent.answer;
+      result.classList.toggle("correct", correct);
+      result.classList.toggle("incorrect", !correct);
+      result.innerHTML = `
+        <strong>${correct ? (state.lang === "bm" ? "Betul" : "Correct") : (state.lang === "bm" ? "Belum tepat" : "Not yet")}: ${selectedMainComponent.name}</strong>
+        <span>${correct ? selectedMainComponent.info : (state.lang === "bm" ? "Cuba pilih fungsi lain." : "Try another function.")}</span>
+      `;
+    });
+  });
+
   document.querySelectorAll("[data-kp03-hotspot]").forEach((button) => {
     button.addEventListener("click", () => {
       const result = document.getElementById("kp03HotspotResult");
